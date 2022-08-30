@@ -58,7 +58,6 @@ export const LoginModal = (props) => {
         setShow(false);
         setinputs("");
         if (data.data.user) {
-          console.log(data)
           setusername(data.data.user.user_name);
           setuserid(data.data.user.id);
 
