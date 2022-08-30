@@ -1,0 +1,49 @@
+*{
+  font-family: 'Montserrat', sans-serif;
+}
+
+
+.form{
+  box-shadow: 0px 0px 8px 2px goldenrod;
+  border-radius: 5px;
+}
+
+.input:focus {
+  outline: none;
+  border:2px solid gold;
+}
+
+/* modal */
+.modal-body{
+  padding: 0px;
+  flex: 0 0 auto;
+}
+
+
+@media all and (min-width: 1024px) and (max-width: 1280px) { }
+ 
+@media all and (max-width: 950px){
+      .input{
+          width: 30px;
+      }
+ }
+
+ @media all and (max-width: 575.98px){
+  .modal-fullscreen-sm-down .modal-content {
+      height: 40%;
+      width: 90%;
+      margin: auto;
+      
+  }
+  
+  }
+ 
+@media all and (min-width: 480px) and (max-width: 768px) { 
+  /* .logButton{
+    display: none;
+  } */
+}
+ 
+@media all and (max-width: 480px) { 
+
+}
