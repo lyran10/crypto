@@ -59,7 +59,7 @@ export const CoinsTable = () => {
         ) : handleSearch().length === 0 ? (
           <h1>Not Found</h1>
         ) : (
-          <Table variant="dark" className="coinTable w-auto">
+          <Table variant="dark" className="coinTable w-auto" style={{borderRadius:"5px"}}>
             <thead>
               <tr style={{ color: "black" }}>
                 <th style={{ backgroundColor: "gold" }}>Coin</th>
@@ -78,7 +78,7 @@ export const CoinsTable = () => {
                     style={{ cursor: "pointer" }}
                     onClick={() => navigate(`/coin/${row.id}`)}
                   >
-                    <td className="text-start p-2">
+                    <td className="text-start p-3">
                       <img src={row?.image} height="30" />
                       <div className="d-flex justify-content-center flex-column">
                         <span className="fs-4">{row.symbol}</span>
@@ -86,11 +86,11 @@ export const CoinsTable = () => {
                       </div>
                     </td>
 
-                    <td className="m-auto" style={{ paddingTop: "40px" }}>
+                    <td className="m-auto p-3" style={{ paddingTop: "40px" }}>
                       {symbol} {numberWithCommas(row?.current_price.toFixed(2))}
                     </td>
 
-                    <td style={{ paddingTop: "40px" }}>
+                    <td className="p-3" style={{ paddingTop: "40px" }}>
                       <span
                         style={{
                           fontSize: "15px",
@@ -104,7 +104,7 @@ export const CoinsTable = () => {
                       </span>
                     </td>
 
-                    <td className="" style={{ paddingTop: "40px" }}>
+                    <td className="p-3" style={{ paddingTop: "40px" }}>
                       <span>
                         {symbol}{" "}
                         {numberWithCommas(
