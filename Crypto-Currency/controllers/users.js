@@ -64,28 +64,29 @@ const userLogin = async (req, res) => {
   const { user_name, user_password } = req.body;
   _userLogin(user_name)
     .then((data) => {
-      if (data.length === 0) {
-        return res.json({ notExists: "Invalid User Name", status: false });
-      }
-      if ((user_password, data[0])) {
-        if (bcrypt.compareSync(user_password, data[0].user_password)) {
-          const token = createToken(data[0].id);
+     return res.json({user : data})
+      // if (data.length === 0) {
+      //   return res.json({ notExists: "Invalid User Name", status: false });
+      // }
+      // if ((user_password, data[0])) {
+      //   if (bcrypt.compareSync(user_password, data[0].user_password)) {
+      //     const token = createToken(data[0].id);
 
-          _updateSessionID(data[0].id, token.accessToken)
-            .then((data) => res.json({user:data}))
-            .catch((err) => res.json({err : err.message}));
+      //     _updateSessionID(data[0].id, token.accessToken)
+      //       .then((data) => res.json({user:data}))
+      //       .catch((err) => res.json({err : err.message}));
 
-          return res
-            .status(201)
-            .cookie("token", token.refToken, {
-              withCredentials: true,
-              httpOnly: true,
-            })
-            .send({ status: true, user: data[0] });
-        } else {
-          return res.json({ notExists: "Invalid Password", status: false });
-        }
-      }
+      //     return res
+      //       .status(201)
+      //       .cookie("token", token.refToken, {
+      //         withCredentials: true,
+      //         httpOnly: true,
+      //       })
+      //       .send({ status: true, user: data[0] });
+      //   } else {
+      //     return res.json({ notExists: "Invalid Password", status: false });
+      //   }
+      // }
     })
     .catch((err) => {
       res.json({err : err.message, status: false });
