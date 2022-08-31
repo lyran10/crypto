@@ -39,6 +39,7 @@ export const LoginModal = (props) => {
 
   const handleClick = (e) => {
     e.preventDefault();
+    console.log("liran")
     if (inputs === "") {
       return toasts("Fill the details");
     } else if (inputs.user_name === "" || inputs.user_name === undefined) {
@@ -50,7 +51,7 @@ export const LoginModal = (props) => {
       return toasts("Enter Password");
     }
     axios
-      .post("/login", inputs, { withCredentials: true })
+      .post("http://localhost:3001/login", inputs, { withCredentials: true })
       .then((data) => {
         setTimeout(() => {
           setlogin(data.data.status);
