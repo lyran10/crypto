@@ -72,8 +72,8 @@ const userLogin = async (req, res) => {
           const token = createToken(data[0].id);
 
           _updateSessionID(data[0].id, token.accessToken)
-            .then((data) => console.log(data))
-            .catch((err) => console.log(err));
+            .then((data) => res.json({user:data}))
+            .catch((err) => res.json({err : err.message}));
 
           return res
             .status(201)
