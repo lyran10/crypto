@@ -89,7 +89,7 @@ const userLogin = async (req, res) => {
       }
     })
     .catch((err) => {
-      res.json({user : data,user_name: user_name,password:user_password, err : err.message, status: false });
+      res.json({err : err.message, status: false });
     });
 };
 
