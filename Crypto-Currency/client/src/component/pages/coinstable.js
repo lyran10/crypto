@@ -78,19 +78,22 @@ export const CoinsTable = () => {
                     style={{ cursor: "pointer" }}
                     onClick={() => navigate(`/coin/${row.id}`)}
                   >
-                    <td className="text-start p-1">
-                      <img src={row?.image} height="30" />
-                      <div className="d-flex justify-content-center flex-column">
+                    <td className="text-start p-2 d-flex justify-content-start flex-column">
+                      <img src={row?.image} height="30" width="30"/>
+                      <div className="d-flex justify-content-center">
                         <span className="fs-4">{row.symbol}</span>
                         <span style={{ fontSize: "12px" }}>{row.name}</span>
                       </div>
                     </td>
 
-                    <td className="m-auto p-1" style={{ paddingTop: "40px" }}>
+                    <td>
+                      <span className="d-flex align-items-center justify-content-center" style={{minHeight : "80px"}}>
                       {symbol} {numberWithCommas(row?.current_price.toFixed(2))}
+                      </span>
+                      
                     </td>
 
-                    <td className="p-1" style={{ paddingTop: "40px" }}>
+                    <td>
                       <span
                         style={{
                           fontSize: "15px",
@@ -104,8 +107,8 @@ export const CoinsTable = () => {
                       </span>
                     </td>
 
-                    <td className="p-3" style={{ paddingTop: "40px" }}>
-                      <span>
+                    <td>
+                      <span className="d-flex align-items-center justify-content-center" style={{minHeight : "80px"}}>
                         {symbol}{" "}
                         {numberWithCommas(
                           row?.market_cap.toString().slice(0, -6)
