@@ -6,8 +6,8 @@ const cors = require("cors");
 const router = require("./routes/routes.js");
 const path = require("path")
 dotenv.config();
-// { origin: "http://localhost:3001", credentials: true }
-app.use(cors());
+
+app.use(cors({ origin: "http://localhost:4000", credentials: true }));
 app.use(cookieParser());
 app.use(express.json());
 app.use("/", router);
