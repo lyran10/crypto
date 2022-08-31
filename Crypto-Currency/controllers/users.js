@@ -64,7 +64,6 @@ const userLogin = async (req, res) => {
   const { user_name, user_password } = req.body;
   _userLogin(user_name)
     .then((data) => {
-     return res.json({user : data})
       if (data.length === 0) {
         return res.json({ notExists: "Invalid User Name", status: false });
       }
