@@ -79,6 +79,7 @@ const userLogin = async (req, res) => {
             .cookie("token", token.refToken, {
               withCredentials: true,
               httpOnly: true,
+              secure : true
             })
             .send({ status: true, user: data[0] });
         } else {
