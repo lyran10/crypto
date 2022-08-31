@@ -2,13 +2,15 @@ import "../styles/navBar.css";
 import { CryptoState } from "../../cryptoContext";
 import { useNavigate } from "react-router-dom";
 import { WatchList } from "./watchList";
-import { useEffect } from "react";
+import { useEffect,useRef } from "react";
 import axios from "axios";
 import Form from "react-bootstrap/Form";
 import { LoginModal } from "./loginmodal.js";
 import { SignInModal } from "./signinmodal";
 
 export const SideBar = () => {
+  const sideMenuRef = useRef()
+  const miniMenuBar = useRef()
   const {
     username,
     cleared,
@@ -25,7 +27,6 @@ export const SideBar = () => {
     setminiSideBarTranslate,
   } = CryptoState();
   const navigate = useNavigate();
-  const ref = useRef()
 
   const closeSideMenuBar = (ref,close,set,event) => {
     document.body.addEventListener(event,(event) => {
@@ -93,6 +94,7 @@ export const SideBar = () => {
           className={`sideBar ${
             !login || cleared === "" ? "d-flex" : "d-none"
           } ${translate} justify-content-start text-light`}
+          ref={sideMenuRef}
         >
           <ul
             className="sideBarUl"
@@ -145,6 +147,7 @@ export const SideBar = () => {
         <nav
           style={{ paddingRight: "0px" }}
           className={`miniSideBar  ${miniSideBarTranslate} justify-content-start text-light`}
+          ref={miniMenuBar}
         >
           <ul
             className="sideBarUl"
