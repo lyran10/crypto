@@ -22,7 +22,7 @@
   left: 100%;
   right: 0;
   border-radius: 5px;
-  transition: 0.6s;
+  transition: 0.3s;
 }
 
 .miniSideBar{
@@ -33,7 +33,7 @@
   left: 0;
   right: 0;
   border-radius: 5px;
-  transition: 0.6s;
+  transition: 0.3s;
 }
 
 .translateback{
@@ -56,6 +56,7 @@
 
 
 .sideBarUl{
+  width: 400px;
   padding-left: 0px;
   display: flex;
   flex-direction: column;
@@ -68,6 +69,10 @@
 li{
   list-style: none;
   padding: 5px;
+}
+
+.watchList{
+  width: 350px;
 }
 
 .watchListLi{

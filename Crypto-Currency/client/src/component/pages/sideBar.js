@@ -82,7 +82,7 @@ export const SideBar = () => {
         >
           <ul
             className="sideBarUl"
-            style={{ width: "400px", backgroundColor: "black" }}
+            style={{ backgroundColor: "black" }}
           >
             <li
               className="li text-light mt-3"
@@ -101,7 +101,6 @@ export const SideBar = () => {
                 className="bg-dark d-flex flex-column"
                 style={{
                   minHeight: "50vh",
-                  width: "350px",
                   borderRadius: "10px",
                 }}
               >
