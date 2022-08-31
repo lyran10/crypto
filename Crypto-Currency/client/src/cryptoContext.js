@@ -45,16 +45,18 @@ const CryptoContext = ({ children }) => {
   const handleToken = () => {
     tokenFromDataBase(JSON.parse(localStorage.getItem("id")))
       .then((data) => {
+        console.log(data);
         setuserid(data.data.user[0].id);
         setusername(data.data.user[0].user_name);
         getdata();
         checkTokenExpired(data.data.user[0])
           .then((data) => {
+            console.log(data);
             setlogin(data.data.status);
             if (data.data.error) {
               renewToken()
                 .then((data) => {
-                  console.log();
+                  console.log(data);
                 })
                 .catch((err) => {
                   if (err.response.data.error === "jwt expired") {
