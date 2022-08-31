@@ -15,16 +15,14 @@ dotenv.config();
 
 const refTokenTime = 24 * 60 * 60 * 1000;
 const accessTokenTime = 60 * 60 * 1000;
-// ${refTokenTime}ms
-// ${accessTokenTime}ms
 
 const createToken = (id) => {
 
   const accessToken = jwt.sign({ id: id }, `${process.env.JWT_TOKEN}`, {
-    expiresIn: `5s`,
+    expiresIn: `${refTokenTime}ms`,
   });
   const refToken = jwt.sign({ id: id }, `${process.env.JWT_REFRESH_TOKEN}`, {
-    expiresIn: `10s`,
+    expiresIn: `${accessTokenTime}ms`,
   });
   return { accessToken, refToken };
 };
