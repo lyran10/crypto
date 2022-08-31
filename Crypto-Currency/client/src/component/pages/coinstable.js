@@ -80,7 +80,7 @@ export const CoinsTable = () => {
                   >
                     <td className="text-start p-2 d-flex justify-content-start flex-column">
                       <img src={row?.image} height="30" width="30"/>
-                      <div className="d-flex justify-content-center">
+                      <div className="d-flex justify-content-center flex-column">
                         <span className="fs-4">{row.symbol}</span>
                         <span style={{ fontSize: "12px" }}>{row.name}</span>
                       </div>
@@ -95,11 +95,12 @@ export const CoinsTable = () => {
 
                     <td>
                       <span
+                      className="d-flex align-items-center justify-content-center"
                         style={{
                           fontSize: "15px",
                           fontWeight: "800",
                           color: profit > 0 ? "rgb(14,203,129)" : "red",
-                          paddingTop: "50px",
+                          minHeight : "80px"
                         }}
                       >
                         {profit && "+"}{" "}
