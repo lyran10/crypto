@@ -64,16 +64,16 @@ const userLogin = async (req, res) => {
   const { user_name, user_password } = req.body;
   _userLogin(user_name)
     .then((data) => {
-      // if (data.length === 0) {
-      //   return res.json({ notExists: "Invalid User Name", status: false });
-      // }
+      if (data.length === 0) {
+        return res.json({ notExists: "Invalid User Name", status: false });
+      }
       if ((user_password, data[0])) {
         if (bcrypt.compareSync(user_password, data[0].user_password)) {
           const token = createToken(data[0].id);
 
           _updateSessionID(data[0].id, token.accessToken)
-            .then((data) => res.json({user:data}))
-            .catch((err) => res.json({err : err.message}));
+            .then((data) => console.log())
+            .catch((err) => console.log());
 
           return res
             .status(201)
