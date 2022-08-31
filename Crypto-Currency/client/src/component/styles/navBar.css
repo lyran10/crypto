@@ -117,7 +117,35 @@ li{
  }
  
 @media all and (min-width: 480px) and (max-width: 768px) {
+
  
+}
+
+@media all and (max-width: 550px) { 
+  .sideBar{
+    left: 0;
+    right: 0;
+    top:0;
+    bottom:0;
+    border-radius: 5px;
+    transition: 0.3s;
+  }
+
+.sideBarUl{
+    width:100%;
+  }
+
+  .translateback{
+    transform: translateX(0px);
+  }
+
+  .translate{
+    transform: translateX(700px);
+  }
+
+  .watchList{
+    width: 280px
+  }
 }
 
  @media all and (max-width: 768px) {
