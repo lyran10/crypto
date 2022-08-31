@@ -25,8 +25,22 @@ export const SideBar = () => {
     setminiSideBarTranslate,
   } = CryptoState();
   const navigate = useNavigate();
+  const ref = useRef()
 
-  useEffect(() => {}, [translate, login, currency]);
+  const closeSideMenuBar = (ref,close,set,event) => {
+    document.body.addEventListener(event,(event) => {
+      if(ref.current){
+        if(!ref.current.contains(event.target)){set(close)}
+  }        
+})
+  }
+
+  useEffect(() => {
+    if(login === true){
+      closeSideMenuBar(sideMenuRef,"translate",settranslate,"click")
+    }
+    closeSideMenuBar(miniMenuBar,"minitranslateback",setminiSideBarTranslate,"mousedown")
+  }, [translate, login, currency, miniSideBarTranslate]);
 
   const handleLogout = () => {
     axios.get("/logout").then((data) => {
