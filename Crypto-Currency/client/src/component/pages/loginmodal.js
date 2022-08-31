@@ -51,7 +51,7 @@ export const LoginModal = (props) => {
       return toasts("Enter Password");
     }
     axios
-      .post("http://localhost:3001/login", inputs, { withCredentials: true })
+      .post("/login", inputs, { withCredentials: true })
       .then((data) => {
         setTimeout(() => {
           setlogin(data.data.status);
