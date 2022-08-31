@@ -53,6 +53,7 @@ export const LoginModal = (props) => {
     axios
       .post("/login", inputs, { withCredentials: true })
       .then((data) => {
+        console.log("lkasjsf")
         setTimeout(() => {
           setlogin(data.data.status);
         }, 500);
