@@ -60,6 +60,7 @@ const createUser = async (req, res) => {
 };
 
 const userLogin = async (req, res) => {
+  console.log(req.body)
   const { user_name, user_password } = req.body;
   _userLogin(user_name)
     .then((data) => {
