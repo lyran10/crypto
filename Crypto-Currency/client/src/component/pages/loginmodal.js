@@ -69,8 +69,10 @@ export const LoginModal = (props) => {
           }
         }
         if (data.data.notExists) {
+          console.log(data)
           return toasts(data.data.notExists);
         } else {
+          console.log(data)
           navigate("/");
         }
       })
