@@ -36,7 +36,6 @@ const refToken = (req, res, next) => {
             .cookie("token", tokens.refToken, {
               withCredentials: true,
               httpOnly: true,
-              secure : true
             })
             .json({ status: true, renew: "renewed" });
         })

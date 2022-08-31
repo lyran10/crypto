@@ -17,6 +17,7 @@ const refTokenTime = 24 * 60 * 60 * 1000;
 const accessTokenTime = 60 * 60 * 1000;
 
 const createToken = (id) => {
+
   const accessToken = jwt.sign({ id: id }, `${process.env.JWT_TOKEN}`, {
     expiresIn: `${accessTokenTime}ms`,
   });
@@ -79,7 +80,6 @@ const userLogin = async (req, res) => {
             .cookie("token", token.refToken, {
               withCredentials: true,
               httpOnly: true,
-              secure : true
             })
             .send({ status: true, user: data[0] });
         } else {
