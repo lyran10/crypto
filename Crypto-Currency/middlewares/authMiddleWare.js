@@ -11,7 +11,7 @@ const checkUser = (req, res, next) => {
   const token = header && header.split(" ")[1];
   if (token === undefined || token === null)
     return res.json({ error: "token null" });
-  jwt.verify(token, process.env.JWT_TOKEN, (error, user) => {
+  jwt.verify(token, `${process.env.JWT_TOKEN}`, (error, user) => {
     if (error) return res.json({ error: error.message, status: false });
     req.user = user.id;
     res.json({ status: true });
@@ -24,7 +24,7 @@ const refToken = (req, res, next) => {
     const refToken = req.cookies.token;
     if (refToken === null)
       return res.status(401).json({ error: "null ref token" });
-    jwt.verify(refToken, process.env.JWT_REFRESH_TOKEN, (error, user) => {
+    jwt.verify(refToken, `${process.env.JWT_REFRESH_TOKEN}`, (error, user) => {
       if (error)
         return res.status(403).json({ error: error.message, status: false });
       let tokens = createToken(user.id);
