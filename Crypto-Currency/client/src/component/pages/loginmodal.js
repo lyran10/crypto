@@ -60,7 +60,7 @@ export const LoginModal = (props) => {
         }else if(data.data.user) {
           setusername(data.data.user.user_name);
           setuserid(data.data.user.id);
-          setloggedin(true)
+          setTimeout(() => {loggedInToasts("Logged In")},700)
 
           if (JSON.parse(localStorage.getItem("id")) == null) {
             localStorage.setItem("id", JSON.stringify(data.data.user.id));

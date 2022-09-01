@@ -32,6 +32,10 @@ export const SignInModal = (props) => {
     toast.warn(error, { position: toast.POSITION.TOP_CENTER });
   };
 
+  const signedInToasts = (message) => {
+    toast.success(message, { position: toast.POSITION.TOP_CENTER });
+  };
+
   const handleClick = (e) => {
     e.preventDefault();
     const emailPattern =
@@ -64,6 +68,7 @@ export const SignInModal = (props) => {
         if (data.data.Registered) {
           toasts(data.data.Registered);
         } else {
+          signedInToasts("Signed In")
           setShow(false);
           navigate("/");
         }

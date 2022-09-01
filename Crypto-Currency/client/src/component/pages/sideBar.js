@@ -7,6 +7,8 @@ import axios from "axios";
 import Form from "react-bootstrap/Form";
 import { LoginModal } from "./loginmodal.js";
 import { SignInModal } from "./signinmodal";
+import { ToastContainer, toast } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'
 
 export const SideBar = () => {
   const sideMenuRef = useRef()
@@ -27,6 +29,10 @@ export const SideBar = () => {
     setminiSideBarTranslate,
   } = CryptoState();
   const navigate = useNavigate();
+
+  const loggedOutToasts = (message) => {
+    return toast.success(message, { position: toast.POSITION.TOP_CENTER });
+   };
 
   const closeSideMenuBar = (ref,close,set,event) => {
     document.body.addEventListener(event,(event) => {
@@ -56,6 +62,7 @@ export const SideBar = () => {
       }, 500);
       localStorage.removeItem("id");
       if (data.data.status === "cleared") {
+        setTimeout(() => {loggedOutToasts("Logged Out")},700)
         SpinnerLoading();
         navigate("/");
         setusername("");
@@ -169,6 +176,7 @@ export const SideBar = () => {
           </ul>
         </nav>
       ) : null}
+      <ToastContainer />
     </>
   );
 };
