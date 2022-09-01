@@ -73,12 +73,11 @@ export const CoinsTable = () => {
                 let profit = row.price_change_percentage_24h >= 0;
                 return (
                   <tr
-                    className="tableRow"
                     key={row.name}
                     style={{ cursor: "pointer" }}
                     onClick={() => navigate(`/coin/${row.id}`)}
                   >
-                    <td className="text-start p-2 d-flex justify-content-start flex-column">
+                    <td className="m-auto">
                       <img src={row?.image} height="30" width="30"/>
                       <div className="d-flex justify-content-center flex-column">
                         <span className="fs-4">{row.symbol}</span>
@@ -86,14 +85,14 @@ export const CoinsTable = () => {
                       </div>
                     </td>
 
-                    <td>
+                    <td className="m-auto">
                       <span className="coinInfo d-flex align-items-center justify-content-center">
                       {symbol} {numberWithCommas(row?.current_price.toFixed(2))}
                       </span>
                       
                     </td>
 
-                    <td>
+                    <td className="m-auto">
                       <span
                       className="coinInfo d-flex align-items-center justify-content-center"
                         style={{
@@ -107,7 +106,7 @@ export const CoinsTable = () => {
                       </span>
                     </td>
 
-                    <td>
+                    <td className="d-flex align-items-center justify-content-center">
                       <span className="coinInfo d-flex align-items-center justify-content-center">
                         {symbol}{" "}
                         {numberWithCommas(
