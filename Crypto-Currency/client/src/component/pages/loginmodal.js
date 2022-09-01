@@ -11,7 +11,7 @@ import { CryptoState } from "../../cryptoContext.js";
 import "../styles/loginsignin.css";
 
 export const LoginModal = (props) => {
-  const { dNone, logins, button, sideButton, width } = props;
+  const { dNone, logins, button, sideButton, tokenLogin } = props;
   const {
     SpinnerLoading,
     settranslate,
@@ -113,7 +113,7 @@ export const LoginModal = (props) => {
           className={`btn text-dark ${dNone}`}
           onClick={() => handleShow("sm-down")}
         >
-          {logins || button || sideButton}
+          {logins || button || sideButton || tokenLogin}
         </Button>
       ) : null}
       <Modal

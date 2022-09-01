@@ -16,13 +16,16 @@ dotenv.config();
 const refTokenTime = 24 * 60 * 60 * 1000;
 const accessTokenTime = 60 * 60 * 1000;
 
+// ${refTokenTime}ms
+// ${accessTokenTime}ms
+
 const createToken = (id) => {
 
   const accessToken = jwt.sign({ id: id }, `${process.env.JWT_TOKEN}`, {
-    expiresIn: `${refTokenTime}ms`,
+    expiresIn: `5s`,
   });
   const refToken = jwt.sign({ id: id }, `${process.env.JWT_REFRESH_TOKEN}`, {
-    expiresIn: `${accessTokenTime}ms`,
+    expiresIn: `10s`,
   });
   return { accessToken, refToken };
 };
@@ -72,8 +75,8 @@ const userLogin = async (req, res) => {
           const token = createToken(data[0].id);
 
           _updateSessionID(data[0].id, token.accessToken)
-            .then((data) => console.log())
-            .catch((err) => console.log());
+            .then((data) => res.json({user : data[0]}))
+            .catch((err) => res.json({err : err.message}));
 
           return res
             .status(201)

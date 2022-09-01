@@ -31,9 +31,7 @@ export const Modale = () => {
           <Button variant="warning" onClick={closeButton}>
             Close
           </Button>
-          <Button variant="warning" onClick={handleClose}>
-            login
-          </Button>
+          <LoginModal tokenLogin="Login" onClick={handleClose}/>
         </Modal.Footer>
       </Modal>
     </section>
