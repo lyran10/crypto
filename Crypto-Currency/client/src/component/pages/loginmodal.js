@@ -20,7 +20,6 @@ export const LoginModal = (props) => {
     setlogin,
     login,
     setminiSideBarTranslate,
-    setloggedin
   } = CryptoState();
   const [inputs, setinputs] = useState("");
   const [show, setshow] = useState(false);
@@ -36,6 +35,10 @@ export const LoginModal = (props) => {
 
   const toasts = (error) => {
     toast.warn(error, { position: toast.POSITION.TOP_CENTER });
+  };
+
+  const loggedInToasts = (message) => {
+    toast.success(message, { position: toast.POSITION.TOP_CENTER });
   };
 
   const handleClick = (e) => {
