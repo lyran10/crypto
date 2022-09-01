@@ -1,14 +1,13 @@
 import React, { useState } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Container } from "react-bootstrap";
 import { useEffect } from "react";
 import { CryptoState } from "../../cryptoContext.js";
 import "../styles/loginsignin.css";
+import { Toastify,errorToasts,singedInToasts } from "./toastify.js";
 
 export const SignInModal = (props) => {
   const { dNone } = props;
@@ -18,6 +17,7 @@ export const SignInModal = (props) => {
   const navigate = useNavigate();
   const [Show, setShow] = useState(false);
   const [fullscreen, setFullscreen] = useState(true);
+  const [issigned,setissigned] = useState(false)
 
   function handleShow(breakpoint) {
     setFullscreen(breakpoint);
@@ -28,13 +28,22 @@ export const SignInModal = (props) => {
     SpinnerLoading();
   }, [login]);
 
-  const toasts = (error) => {
-    toast.warn(error, { position: toast.POSITION.TOP_CENTER });
-  };
-
-  const signedInToasts = (message) => {
-    toast.success(message, { position: toast.POSITION.TOP_CENTER });
-  };
+  const signIn = () => {
+    axios
+      .post("http://localhost:3001/signup", inputs)
+      .then((data) => {
+        if (data.data.Registered) {
+          errorToasts(data.data.Registered);
+        } else {
+          setShow(false);
+          navigate("/");
+          setissigned(true)
+          setTimeout(() => {setissigned(false)},8000)
+          setTimeout(() => {return singedInToasts("Signed In")},100) 
+        }
+      })
+      .catch((error) => console.log(error));
+  }
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -47,33 +56,16 @@ export const SignInModal = (props) => {
       !inputs.user_name ||
       !inputs.user_email_id
     ) {
-      return toasts("Fill all the Details");
+      return errorToasts("Fill all the Details");
+    }else if (emailPattern.test(inputs.user_email_id) === false) {
+      return errorToasts("Email ID not valid");
+    }else if (inputs.user_password.length < 8) {
+      return errorToasts("Password should be minimum of 8 characters");
+    }else if (inputs.user_confirm_password !== inputs.user_password) {
+      return errorToasts("Password does not match");
     }
-
-    if (emailPattern.test(inputs.user_email_id) === false) {
-      return toasts("Email ID not valid");
-    }
-
-    if (inputs.user_password.length < 8) {
-      return toasts("Password should be minimum of 8 characters");
-    }
-
-    if (inputs.user_confirm_password !== inputs.user_password) {
-      return toasts("Password does not match");
-    }
-
-    axios
-      .post("/signup", inputs)
-      .then((data) => {
-        if (data.data.Registered) {
-          toasts(data.data.Registered);
-        } else {
-          signedInToasts("Signed In")
-          setShow(false);
-          navigate("/");
-        }
-      })
-      .catch((error) => console.log(error));
+      signIn()
+    
   };
 
   setTimeout(() => {
@@ -190,10 +182,11 @@ export const SignInModal = (props) => {
                 />
               </form>
             ) : null}
-            <ToastContainer />
           </Container>
         </Modal.Body>
+        {!issigned?<Toastify />:null}
       </Modal>
+      {issigned?<Toastify />:null}
     </>
   );
 };

@@ -1,14 +1,13 @@
 import React, { useState,useEffect } from "react";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Container } from "react-bootstrap";
 import { tokenFromDataBase, checkTokenExpired } from "../config/tokenapi";
 import { CryptoState } from "../../cryptoContext.js";
 import "../styles/loginsignin.css";
+import {Toastify,errorToasts,loggedInToasts} from "./toastify.js"
 
 export const LoginModal = (props) => {
   const { dNone, logins, button, sideButton, tokenLogin } = props;
@@ -33,50 +32,47 @@ export const LoginModal = (props) => {
     setShow(true);
   }
 
-  const toasts = (error) => {
-    toast.warn(error, { position: toast.POSITION.TOP_CENTER });
-  };
+  const checkLogin = () => {
+    axios
+    .post("http://localhost:3001/login", inputs, { withCredentials: true })
+    .then((data) => {
+      setTimeout(() => {setlogin(data.data.status);}, 500);
+       if(data.data.notExists) {
+        errorToasts(data.data.notExists);
+      }else if (data.data.user) {
+        setusername(data.data.user.user_name);
+        setuserid(data.data.user.id);
 
-  const loggedInToasts = (message) => {
-    toast.success(message, { position: toast.POSITION.TOP_CENTER });
-  };
+        if (JSON.parse(localStorage.getItem("id")) == null) {
+          localStorage.setItem("id", JSON.stringify(data.data.user.id));
+        }
+        setShow(false) 
+        setinputs("");
+        setTimeout(() => {return loggedInToasts("Logged In")},700)
+      } else {
+        navigate("/");
+        setShow(false);
+        setinputs("");
+      }
+    })
+    .catch((error) => console.log(error));
+   }
 
-  const handleClick = (e) => {
+   const handleClick = (e) => {
     e.preventDefault();
-    console.log("liran")
     if (inputs === "") {
-      return toasts("Fill the details");
+      errorToasts("Fill the details");
     } else if (inputs.user_name === "" || inputs.user_name === undefined) {
-      return toasts("Enter User Name");
+      errorToasts("Enter User Name");
     } else if (
       inputs.user_password === "" ||
       inputs.user_password === undefined
     ) {
-      return toasts("Enter Password");
+      errorToasts("Enter Password");
+    }else{
+      checkLogin()
     }
-    axios
-      .post("/login", inputs, { withCredentials: true })
-      .then((data) => {
-        setTimeout(() => {setlogin(data.data.status);}, 500);
-        if (data.data.notExists) {
-          toasts(data.data.notExists);
-        }else if(data.data.user) {
-          setusername(data.data.user.user_name);
-          setuserid(data.data.user.id);
-          setTimeout(() => {loggedInToasts("Logged In")},700)
-
-          if (JSON.parse(localStorage.getItem("id")) == null) {
-            localStorage.setItem("id", JSON.stringify(data.data.user.id));
-          }
-          setShow(false);
-          setinputs("");
-        }else {
-          navigate("/");
-          setShow(false);
-          setinputs("");
-        }
-      })
-      .catch((error) => console.log(error));
+    
   };
 
   const checkUser = async () => {
@@ -173,10 +169,11 @@ export const LoginModal = (props) => {
                 </div>
               </form>
             ) : null}
-            <ToastContainer />
           </Container>
         </Modal.Body>
+        {!login?<Toastify/>:null}
       </Modal>
+      {login?<Toastify/>:null}
     </section>
   );
 };

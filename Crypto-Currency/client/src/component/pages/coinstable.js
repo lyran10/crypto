@@ -6,6 +6,7 @@ import Table from "react-bootstrap/Table";
 import Spinner from "react-bootstrap/Spinner";
 import { useNavigate } from "react-router-dom";
 import { numberWithCommas } from "./carousel";
+import { InputSearch } from "./inputSearch";
 
 export const CoinsTable = () => {
   const [search, setsearch] = useState("");
@@ -42,17 +43,10 @@ export const CoinsTable = () => {
           Crypto Currency Prices By Market Cap
         </span>
 
-        <form className="mt-3 mb-3">
-          <label className="custom-field one">
-            <input
-              className="text-light inputField"
-              onChange={(e) => setsearch(e.target.value)}
-              type="text"
-              placeholder=" "
-            />
-            <span className="placeholder">Enter Text</span>
-          </label>
-        </form>
+        <span>
+          Click on the coins from the table for more information
+        </span>
+          <InputSearch search = {setsearch}/>
 
         {loading ? (
           <Spinner animation="border" variant="warning" />

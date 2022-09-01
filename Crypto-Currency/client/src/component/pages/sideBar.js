@@ -5,14 +5,11 @@ import { WatchList } from "./watchList";
 import { useEffect,useRef } from "react";
 import axios from "axios";
 import Form from "react-bootstrap/Form";
-import { LoginModal } from "./loginmodal.js";
-import { SignInModal } from "./signinmodal";
-import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css'
+import { Toastify,loggedOutToasts } from "./toastify";
 
 export const SideBar = () => {
   const sideMenuRef = useRef()
-  const miniMenuBar = useRef()
+  const [logout,setlogout] = useState(false)
   const {
     username,
     cleared,
@@ -46,7 +43,6 @@ export const SideBar = () => {
     if(login === true){
       closeSideMenuBar(sideMenuRef,"translate",settranslate,"click")
     }
-    closeSideMenuBar(miniMenuBar,"minitranslateback",setminiSideBarTranslate,"mousedown")
   }, [translate, login, currency, miniSideBarTranslate]);
 
   const handleLogout = () => {
@@ -62,7 +58,9 @@ export const SideBar = () => {
       }, 500);
       localStorage.removeItem("id");
       if (data.data.status === "cleared") {
-        setTimeout(() => {loggedOutToasts("Logged Out")},700)
+        setTimeout(() => {return loggedOutToasts("Logged Out")},700)
+        setlogout(true)
+        setTimeout(() => { setlogout(false)},5000)
         SpinnerLoading();
         navigate("/");
         setusername("");
@@ -136,47 +134,15 @@ export const SideBar = () => {
               </div>
             </li>
             <li className="li">
-              <button
-                onClick={() => {
-                  settranslate("translate");
-                  handleLogout();
-                }}
-                style={{ backgroundColor: "gold" }}
-                className="mb-3 btn text-dark border-warning"
-              >
-                LOGOUT
-              </button>
+            <LogoutButton Logout = {handleLogout}/>
             </li>
           </ul>
         </nav>
       ) : null}
+      {logout?<Toastify/>:null}
       {!login ? (
-        <nav
-          style={{ paddingRight: "0px" }}
-          className={`miniSideBar  ${miniSideBarTranslate} justify-content-start text-light`}
-          ref={miniMenuBar}
-        >
-          <ul
-            className="sideBarUl"
-            style={{
-              width: "100%",
-              minHeight: "200px",
-              backgroundColor: "black",
-            }}
-          >
-            <li>
-							{formSelect()}
-            </li>
-            <li>
-              <LoginModal sideButton="Login" />
-            </li>
-            <li>
-              <SignInModal />
-            </li>
-          </ul>
-        </nav>
+      <MiniMainBar selectForm ={formSelect()} minitranslate={miniSideBarTranslate}/>
       ) : null}
-      <ToastContainer />
     </>
   );
 };
