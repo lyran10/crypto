@@ -86,8 +86,8 @@ export const LoginModal = (props) => {
   };
 
   useEffect(() => {
-    checkUser();
     SpinnerLoading();
+    checkUser();
     settranslate("translate");
     setminiSideBarTranslate("minitranslateback");
   }, []);
