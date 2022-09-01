@@ -176,8 +176,10 @@ li{
 
  }
 
-@media all and (max-width: 480px) { 
-  
+ @media all and (max-width: 480px){
+  .coinInfo{
+    padding-top: 10px;
+  }
 }
 
 
