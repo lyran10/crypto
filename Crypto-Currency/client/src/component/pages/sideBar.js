@@ -121,7 +121,7 @@ export const SideBar = () => {
             </li>
             <li className="li">
               <div
-                className="bg-dark d-flex flex-column"
+                className="watchList bg-dark d-flex flex-column"
                 style={{
                   minHeight: "50vh",
                   borderRadius: "10px",
