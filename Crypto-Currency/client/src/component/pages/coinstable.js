@@ -78,9 +78,9 @@ export const CoinsTable = () => {
                     onClick={() => navigate(`/coin/${row.id}`)}
                   >
                     <td >
-                      <div className="coinInfo">
+                      <div className="coinInfo text-start">
                         <img src={row?.image} height="30" width="30"/>
-                        <div className="d-flex justify-content-center flex-column">
+                        <div className="d-flex justify-content-start flex-column">
                           <span className="fs-4">{row.symbol}</span>
                           <span style={{ fontSize: "12px" }}>{row.name}</span>
                         </div>
