@@ -53,27 +53,23 @@ export const LoginModal = (props) => {
     axios
       .post("/login", inputs, { withCredentials: true })
       .then((data) => {
-        console.log("lkasjsf")
-        setTimeout(() => {
-          setlogin(data.data.status);
-        }, 500);
-        setShow(false);
-        setinputs("");
-        if (data.data.user) {
-          console.log(data)
+        setTimeout(() => {setlogin(data.data.status);}, 500);
+        if (data.data.notExists) {
+          toasts(data.data.notExists);
+        }else if(data.data.user) {
           setusername(data.data.user.user_name);
           setuserid(data.data.user.id);
+          setloggedin(true)
 
           if (JSON.parse(localStorage.getItem("id")) == null) {
             localStorage.setItem("id", JSON.stringify(data.data.user.id));
           }
-        }
-        if (data.data.notExists) {
-          console.log(data)
-          return toasts(data.data.notExists);
-        } else {
-          console.log(data)
+          setShow(false);
+          setinputs("");
+        }else {
           navigate("/");
+          setShow(false);
+          setinputs("");
         }
       })
       .catch((error) => console.log(error));
@@ -108,6 +104,7 @@ export const LoginModal = (props) => {
             backgroundColor: "gold",
             border: "none",
             margin: "auto",
+            marginTop:"1px"
           }}
           className={`btn text-dark ${dNone}`}
           onClick={() => handleShow("sm-down")}
