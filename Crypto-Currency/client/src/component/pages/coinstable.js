@@ -87,7 +87,7 @@ export const CoinsTable = () => {
                     </td>
 
                     <td>
-                      <span className="d-flex align-items-center justify-content-center">
+                      <span className="coinInfo d-flex align-items-center justify-content-center">
                       {symbol} {numberWithCommas(row?.current_price.toFixed(2))}
                       </span>
                       
@@ -95,7 +95,7 @@ export const CoinsTable = () => {
 
                     <td>
                       <span
-                      className="d-flex align-items-center justify-content-center"
+                      className="coinInfo d-flex align-items-center justify-content-center"
                         style={{
                           fontSize: "15px",
                           fontWeight: "800",
@@ -108,7 +108,7 @@ export const CoinsTable = () => {
                     </td>
 
                     <td>
-                      <span className="d-flex align-items-center justify-content-center">
+                      <span className="coinInfo d-flex align-items-center justify-content-center">
                         {symbol}{" "}
                         {numberWithCommas(
                           row?.market_cap.toString().slice(0, -6)
