@@ -87,7 +87,7 @@ export const CoinsTable = () => {
                     </td>
 
                     <td>
-                      <span className="d-flex align-items-center justify-content-center" style={{minHeight : "80px"}}>
+                      <span className="d-flex align-items-center justify-content-center">
                       {symbol} {numberWithCommas(row?.current_price.toFixed(2))}
                       </span>
                       
@@ -100,7 +100,6 @@ export const CoinsTable = () => {
                           fontSize: "15px",
                           fontWeight: "800",
                           color: profit > 0 ? "rgb(14,203,129)" : "red",
-                          minHeight : "80px"
                         }}
                       >
                         {profit && "+"}{" "}
@@ -109,7 +108,7 @@ export const CoinsTable = () => {
                     </td>
 
                     <td>
-                      <span className="d-flex align-items-center justify-content-center" style={{minHeight : "80px"}}>
+                      <span className="d-flex align-items-center justify-content-center">
                         {symbol}{" "}
                         {numberWithCommas(
                           row?.market_cap.toString().slice(0, -6)

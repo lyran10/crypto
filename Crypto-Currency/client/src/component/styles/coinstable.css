@@ -119,6 +119,10 @@ tr:hover{
   color: white;
 }
 
+.coinInfo{
+  min-height : 80px
+}
+
 /* media query */
 
 @media all and (min-width: 1024px) and (max-width: 1280px) { 
@@ -140,6 +144,11 @@ tr:hover{
   .custom-field.one input {
     width: 200px;
   }
+
+  .coinInfo{
+    min-height : 50px
+  }
+  
 }
 
 @media all and (max-width: 310px) { 
