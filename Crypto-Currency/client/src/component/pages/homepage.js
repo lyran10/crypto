@@ -3,17 +3,11 @@ import { CoinsTable } from "./coinstable.js";
 import { CryptoState } from "../../cryptoContext";
 import { useEffect, useState } from "react";
 import "../styles/navBar.css";
-import { ToastContainer, toast } from "react-toastify";
-import 'react-toastify/dist/ReactToastify.css';
 
 export const Home = () => {
   const [show, setshow] = useState(false);
   const { getdata, addcoin, handleToken, SpinnerLoading, login } =
     CryptoState();
-
-    const toasts = () => {
-      return toast.success("Logged In", { position: toast.POSITION.TOP_CENTER });
-     };
 
   useEffect(
     () => {
@@ -47,7 +41,6 @@ export const Home = () => {
           <CoinsTable />
         </div>
       ) : null}
-      <ToastContainer />
     </main>
   );
 };
