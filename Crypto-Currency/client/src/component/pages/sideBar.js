@@ -2,10 +2,12 @@ import "../styles/navBar.css";
 import { CryptoState } from "../../cryptoContext";
 import { useNavigate } from "react-router-dom";
 import { WatchList } from "./watchList";
-import { useEffect,useRef } from "react";
+import { useEffect,useRef,useState } from "react";
 import axios from "axios";
 import Form from "react-bootstrap/Form";
 import { Toastify,loggedOutToasts } from "./toastify";
+import {LogoutButton} from "./logout"
+import {MiniMainBar} from "./minimainbar"
 
 export const SideBar = () => {
   const sideMenuRef = useRef()
@@ -26,10 +28,6 @@ export const SideBar = () => {
     setminiSideBarTranslate,
   } = CryptoState();
   const navigate = useNavigate();
-
-  const loggedOutToasts = (message) => {
-    return toast.success(message, { position: toast.POSITION.TOP_CENTER });
-   };
 
   const closeSideMenuBar = (ref,close,set,event) => {
     document.body.addEventListener(event,(event) => {
