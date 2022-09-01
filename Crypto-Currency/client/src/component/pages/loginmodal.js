@@ -20,6 +20,7 @@ export const LoginModal = (props) => {
     setlogin,
     login,
     setminiSideBarTranslate,
+    setloggedin
   } = CryptoState();
   const [inputs, setinputs] = useState("");
   const [show, setshow] = useState(false);
