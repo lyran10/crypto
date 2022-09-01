@@ -46,6 +46,7 @@ export const LoginModal = (props) => {
         if (JSON.parse(localStorage.getItem("id")) == null) {
           localStorage.setItem("id", JSON.stringify(data.data.user.id));
         }
+        SpinnerLoading();
         setShow(false) 
         setinputs("");
         setTimeout(() => {return loggedInToasts("Logged In")},700)
@@ -86,7 +87,6 @@ export const LoginModal = (props) => {
   };
 
   useEffect(() => {
-    SpinnerLoading();
     checkUser();
     settranslate("translate");
     setminiSideBarTranslate("minitranslateback");
