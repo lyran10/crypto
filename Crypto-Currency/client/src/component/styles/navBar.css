@@ -135,6 +135,8 @@ li{
     bottom:0;
     border-radius: 5px;
     transition: 0.3s;
+    margin-top: 20px;
+    height: 100vh;
   }
 
 .sideBarUl{
