@@ -148,12 +148,6 @@ tr:hover{
   .coinInfo{
     min-height : 120px
   }
-
-  .imgAndName{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
   
 }
 

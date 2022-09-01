@@ -77,11 +77,13 @@ export const CoinsTable = () => {
                     style={{ cursor: "pointer" }}
                     onClick={() => navigate(`/coin/${row.id}`)}
                   >
-                    <td className="imgAndName">
-                      <img src={row?.image} height="30" width="30"/>
-                      <div className="d-flex justify-content-center flex-column">
-                        <span className="fs-4">{row.symbol}</span>
-                        <span style={{ fontSize: "12px" }}>{row.name}</span>
+                    <td >
+                      <div className="coinInfo">
+                        <img src={row?.image} height="30" width="30"/>
+                        <div className="d-flex justify-content-center flex-column">
+                          <span className="fs-4">{row.symbol}</span>
+                          <span style={{ fontSize: "12px" }}>{row.name}</span>
+                        </div>
                       </div>
                     </td>
 
