@@ -107,7 +107,6 @@ export const LoginModal = (props) => {
           style={{
             backgroundColor: "gold",
             border: "none",
-            width: { width },
             margin: "auto",
           }}
           className={`btn text-dark ${dNone}`}
