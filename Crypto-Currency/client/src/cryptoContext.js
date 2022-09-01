@@ -28,7 +28,6 @@ const CryptoContext = ({ children }) => {
   const [translate, settranslate] = useState("translate");
   const [miniSideBarTranslate, setminiSideBarTranslate] =
     useState("minitranslateback");
-    const [loggedin,setloggedin] = useState(false)
 
   useEffect(() => {
     if (currency === "USD") setsymbol("$");
@@ -132,8 +131,6 @@ const CryptoContext = ({ children }) => {
         settranslate,
         miniSideBarTranslate,
         setminiSideBarTranslate,
-        loggedin,
-        setloggedin
       }}
     >
       {children}

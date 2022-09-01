@@ -8,7 +8,7 @@ import 'react-toastify/dist/ReactToastify.css';
 
 export const Home = () => {
   const [show, setshow] = useState(false);
-  const { getdata, addcoin, handleToken, SpinnerLoading, login, loggedin, setloggedin } =
+  const { getdata, addcoin, handleToken, SpinnerLoading, login } =
     CryptoState();
 
     const toasts = () => {
@@ -22,11 +22,6 @@ export const Home = () => {
         handleToken();
       }
       getdata();
-
-      if(loggedin){
-        toasts()
-        setloggedin(false)
-      }
     },
     [addcoin, JSON.parse(localStorage.getItem("id"))],
     login
