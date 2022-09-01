@@ -34,7 +34,7 @@ export const LoginModal = (props) => {
 
   const checkLogin = () => {
     axios
-    .post("http://localhost:3001/login", inputs, { withCredentials: true })
+    .post("/login", inputs, { withCredentials: true })
     .then((data) => {
       setTimeout(() => {setlogin(data.data.status);}, 500);
        if(data.data.notExists) {

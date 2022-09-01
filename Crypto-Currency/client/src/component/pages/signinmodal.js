@@ -30,7 +30,7 @@ export const SignInModal = (props) => {
 
   const signIn = () => {
     axios
-      .post("http://localhost:3001/signup", inputs)
+      .post("/signup", inputs)
       .then((data) => {
         if (data.data.Registered) {
           errorToasts(data.data.Registered);
