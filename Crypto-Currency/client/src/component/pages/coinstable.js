@@ -106,7 +106,7 @@ export const CoinsTable = () => {
                       </span>
                     </td>
 
-                    <td className="d-flex align-items-center justify-content-center">
+                    <td className="m-auto">
                       <span className="coinInfo d-flex align-items-center justify-content-center">
                         {symbol}{" "}
                         {numberWithCommas(
