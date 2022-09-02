@@ -8,7 +8,7 @@ import Form from "react-bootstrap/Form";
 import { Toastify,loggedOutToasts } from "./toastify";
 import {LogoutButton} from "./logoutButton"
 import {MiniMainBar} from "./miniNavBar"
-import {deleteFromDataBase} from "./config/tokenApi.js"
+import {deleteFromDataBase} from "./config/tokenapi.js"
 
 export const SideBar = () => {
   const sideMenuRef = useRef()

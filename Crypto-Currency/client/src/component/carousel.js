@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { CryptoState } from "./../cryptoContext";
 import axios from "axios";
-import { TrendingCoins } from "./config/coinApi";
+import { TrendingCoins } from "./config/coinapi";
 import "./styles/bannerAndCarousel.css";
 import { Carousel } from "react-bootstrap";
 

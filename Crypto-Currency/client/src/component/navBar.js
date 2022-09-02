@@ -10,7 +10,7 @@ import { SideBar } from "./sideBar.js";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useEffect } from "react";
 import Spinner from "react-bootstrap/Spinner";
-import { checkTokenExpired } from "./config/tokenApi";
+import { checkTokenExpired } from "./config/tokenapi";
 import { LoginModal } from "./loginModal.js";
 import { SignInModal } from "./signinModal";
 

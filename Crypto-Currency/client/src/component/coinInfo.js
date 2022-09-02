@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { CryptoState } from "../cryptoContext";
 import axios from "axios";
 import "./styles/coinpageAndChart.css";
-import { HistoricalChart } from "./config/coinApi";
+import { HistoricalChart } from "./config/coinapi";
 import Container from "react-bootstrap/Container";
 import Spinner from "react-bootstrap/Spinner";
 import { Line } from "react-chartjs-2";
