@@ -51,7 +51,7 @@ export const CoinPage = () => {
                 { withCredentials: true }
               )
               .then((data) => {
-                if (!data.data.status) {
+                if (data.data.error) {
                           setlogin(data.data.status);
                           localStorage.removeItem("id");
                           settranslate("translateback");
