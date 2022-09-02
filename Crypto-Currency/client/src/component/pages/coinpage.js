@@ -51,21 +51,23 @@ export const CoinPage = () => {
                 { withCredentials: true }
               )
               .then((data) => {
-                setaddcoin(data.data);
-                settranslate("translateback");
+                if (!data.data.status) {
+                          setlogin(data.data.status);
+                          localStorage.removeItem("id");
+                          settranslate("translateback");
+                          setminiSideBarTranslate("minitranslateback");
+                          navigate("/");
+                          setTimeout(() => {
+                            setmodal(true);
+                          }, 1000);
+                        }else{
+                          setaddcoin(data.data);
+                          settranslate("translateback");
+                        }
               })
               .catch((err) => {
                 console.log(err);
               });
-    //       } else if (!data.data.status) {
-    //         setlogin(data.data.status);
-    //         localStorage.removeItem("id");
-    //         settranslate("translateback");
-    //         setminiSideBarTranslate("minitranslateback");
-    //         navigate("/");
-    //         setTimeout(() => {
-    //           setmodal(true);
-    //         }, 1000);
     //       }
     //     })
     //     .catch((err) => {

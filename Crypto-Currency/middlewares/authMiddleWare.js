@@ -19,6 +19,18 @@ const checkUser = (req, res, next) => {
   });
 };
 
+const Auth = (req, res, next) => {
+  const header = req.headers["authorization"];
+  const token = header && header.split(" ")[1];
+  if (token === undefined || token === null)
+    return res.json({ error: "token null" });
+  jwt.verify(token, `${process.env.JWT_TOKEN}`, (error, user) => {
+    if (error) return res.json({ error: error.message, status: false });
+    req.user = user.id;
+    next();
+  });
+};
+
 const refToken = (req, res, next) => {
   try {
     const refToken = req.cookies.token;
@@ -47,4 +59,4 @@ const refToken = (req, res, next) => {
   }
 };
 
-module.exports = { checkUser, refToken };
+module.exports = { checkUser, refToken, Auth };

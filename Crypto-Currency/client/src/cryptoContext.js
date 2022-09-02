@@ -56,7 +56,7 @@ const CryptoContext = ({ children }) => {
             if (data.data.error) {
               renewToken()
                 .then((data) => {
-                  console.log(data);
+                  setlogin(data.data.status);
                 })
                 .catch((err) => {
                   if (err.response.data.error === "jwt expired") {
