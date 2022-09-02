@@ -6,7 +6,7 @@ import axios from "axios";
 import { Container } from "react-bootstrap";
 import { tokenFromDataBase, checkTokenExpired } from "./config/tokenapi";
 import { CryptoState } from "../cryptoContext.js";
-import "./styles/loginSignin.css";
+import "./styles/loginsignin.css";
 import {Toastify,errorToasts,loggedInToasts} from "./toastify.js"
 
 export const LoginModal = (props) => {
