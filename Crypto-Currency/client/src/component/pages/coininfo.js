@@ -66,14 +66,14 @@ export const CoinInfo = ({ coin }) => {
                 },
               ],
             }}
-            options={{
-              maintainAspectRatio: false,
-              elements: {
-                point: {
-                  radius: 1,
-                },
-              },
-            }}
+            // options={{
+            //   maintainAspectRatio: false,
+            //   elements: {
+            //     point: {
+            //       radius: 1,
+            //     },
+            //   },
+            // }}
           />
         )}
       </div>
