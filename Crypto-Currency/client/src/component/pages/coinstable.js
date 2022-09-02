@@ -18,12 +18,11 @@ export const CoinsTable = () => {
   }, [symbol, currency]);
 
   const handleSearch = () => {
+
     return coins.filter(
       (coin) =>
-        coin.name.toLowerCase().includes(search) ||
-        coin.symbol.toLowerCase().includes(search) ||
-        coin.name.toUpperCase().includes(search) ||
-        coin.symbol.toUpperCase().includes(search)
+        coin.name.toLowerCase().includes(search.toLowerCase()) ||
+        coin.symbol.toLowerCase().includes(search.toLowerCase())
     );
   };
 
