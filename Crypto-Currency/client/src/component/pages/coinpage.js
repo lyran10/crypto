@@ -52,6 +52,7 @@ export const CoinPage = () => {
               )
               .then((data) => {
                 setaddcoin(data.data);
+                settranslate("translateback");
               })
               .catch((err) => {
                 console.log(err);

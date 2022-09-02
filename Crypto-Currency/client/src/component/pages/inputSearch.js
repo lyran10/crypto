@@ -11,7 +11,7 @@ export const InputSearch = (props) => {
         type="text"
         placeholder=" "
       />
-      <span className="placeholder">Enter Text</span>
+      <span className="placeholder">Enter Coin</span>
     </label>
   </form>
   )
