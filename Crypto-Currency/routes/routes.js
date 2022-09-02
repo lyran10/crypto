@@ -34,7 +34,7 @@ router.get("/logout", (req, res) => {
 });
 
 // watch list routers
-router.post("/addcoin",Auth,addToWatchList);
+router.get("/addcoin",Auth,addToWatchList);
 
 router.post("/getcoin", checkInList);
 

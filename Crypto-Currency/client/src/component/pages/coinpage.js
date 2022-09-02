@@ -45,7 +45,7 @@ export const CoinPage = () => {
     //     .then((data) => {
     //       if (data.data.status) {
             axios
-              .post(
+              .get(
                 "/addcoin",
                 { coin: e.target.id, user_id: userid },
                 { withCredentials: true }
