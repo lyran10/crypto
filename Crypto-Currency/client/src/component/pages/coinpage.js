@@ -141,7 +141,7 @@ export const CoinPage = () => {
 
         {JSON.parse(localStorage.getItem("id")) === null ? (
           <LoginModal
-            logins="Login In to make your on watch list"
+            logins="Login In to make your own watch list"
           />
         ) : (
           <div className="d-flex justify-content-center">
