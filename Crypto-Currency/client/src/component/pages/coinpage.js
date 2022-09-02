@@ -8,7 +8,7 @@ import parse from "html-react-parser";
 import Container from "react-bootstrap/esm/Container";
 import { numberWithCommas } from "../carousel";
 import Spinner from "react-bootstrap/Spinner";
-import "../styles/coinpageAndCahrt.css";
+import "../styles/coinpageAndChart.css";
 import { tokenFromDataBase, checkTokenExpired } from "../config/tokenapi";
 import { LoginModal } from "../loginModal";
 
