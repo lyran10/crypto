@@ -5,6 +5,7 @@ export const tokenFromDataBase = (id) => {
 }
 
 export const checkTokenExpired = (data) => {
+  localStorage.setItem("token",JSON.stringify(data?.session_id))
 return axios.get("/expires",{
       headers : {Authorization: `Bearer ${data?.session_id}`},
       withCredentials:true

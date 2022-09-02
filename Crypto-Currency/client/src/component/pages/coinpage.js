@@ -44,11 +44,13 @@ export const CoinPage = () => {
     //   checkTokenExpired(data.data.user[0])
     //     .then((data) => {
     //       if (data.data.status) {
+      let token = JSON.parse(localStorage.getItem("token"))
             axios
-              .get(
+              .post(
                 "/addcoin",
                 { coin: e.target.id, user_id: userid },
-                { withCredentials: true }
+                { withCredentials: true,
+                  headers : {Authorization: `Bearer ${token}`} }
               )
               .then((data) => {
                 console.log(data)
