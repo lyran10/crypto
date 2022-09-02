@@ -23,7 +23,7 @@ const Auth = (req, res, next) => {
   const header = req.headers["authorization"];
   const token = header && header.split(" ")[1];
   if (token === undefined || token === null)
-    return res.json({ error: "token null" });
+    return res.json({ error: "token null",token:token });
   jwt.verify(token, `${process.env.JWT_TOKEN}`, (error, user) => {
     if (error) return res.json({ error: error.message, status: false });
     req.user = user.id;
