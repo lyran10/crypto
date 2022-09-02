@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import { CryptoState } from "../cryptoContext";
-import "./styles/coinsTable.css";
+import "./styles/coinstable.css";
 import Table from "react-bootstrap/Table";
 import Spinner from "react-bootstrap/Spinner";
 import { useNavigate } from "react-router-dom";
