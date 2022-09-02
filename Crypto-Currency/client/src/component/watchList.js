@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { numberWithCommas } from "./carousel";
-import { CryptoState } from "../../cryptoContext";
+import { CryptoState } from "../cryptoContext";
 import axios from "axios";
 
 export const WatchList = () => {

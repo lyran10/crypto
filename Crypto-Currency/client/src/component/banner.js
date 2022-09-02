@@ -1,5 +1,5 @@
 import Container from "react-bootstrap/Container";
-import "../styles/banner.css";
+import "./styles/bannerAndCarousel.css";
 import { Carousels } from "./carousel";
 
 export const Banner = () => {

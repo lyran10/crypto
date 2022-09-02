@@ -5,8 +5,8 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Container } from "react-bootstrap";
 import { useEffect } from "react";
-import { CryptoState } from "../../cryptoContext.js";
-import "../styles/loginsignin.css";
+import { CryptoState } from "../cryptoContext.js";
+import "./styles/loginSignin.css";
 import { Toastify,errorToasts,singedInToasts } from "./toastify.js";
 
 export const SignInModal = (props) => {

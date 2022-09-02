@@ -1,4 +1,4 @@
-import { CryptoState } from "../../cryptoContext";
+import { CryptoState } from "../cryptoContext";
 
 export const LogoutButton = (props) => {
   const {Logout} = props

@@ -1,11 +1,11 @@
 import { createContext, useContext } from "react";
 import { useState, useEffect } from "react";
-import { CoinList } from "./component/config/coinapi";
+import { CoinList } from "./component/config/coinApi";
 import {
   tokenFromDataBase,
   checkTokenExpired,
   renewToken,
-} from "./component/config/tokenapi";
+} from "./component/config/tokenApi";
 import axios from "axios";
 import "./component/styles/navBar.css";
 

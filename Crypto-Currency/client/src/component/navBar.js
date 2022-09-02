@@ -3,16 +3,16 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import Form from "react-bootstrap/Form";
-import "../styles/navBar.css";
+import "./styles/navBar.css";
 import { Link } from "react-router-dom";
-import { CryptoState } from "../../cryptoContext.js";
+import { CryptoState } from "../cryptoContext.js";
 import { SideBar } from "./sideBar.js";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { useEffect } from "react";
 import Spinner from "react-bootstrap/Spinner";
-import { tokenFromDataBase, checkTokenExpired } from "../config/tokenapi";
-import { LoginModal } from "./loginmodal.js";
-import { SignInModal } from "./signinmodal";
+import { tokenFromDataBase, checkTokenExpired } from "./config/tokenApi";
+import { LoginModal } from "./loginModal.js";
+import { SignInModal } from "./signinModal";
 
 export const Nav_Bar = () => {
   const {

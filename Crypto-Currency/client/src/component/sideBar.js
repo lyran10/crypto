@@ -1,13 +1,14 @@
-import "../styles/navBar.css";
-import { CryptoState } from "../../cryptoContext";
+import "./styles/navBar.css";
+import { CryptoState } from "../cryptoContext";
 import { useNavigate } from "react-router-dom";
 import { WatchList } from "./watchList";
 import { useEffect,useRef,useState } from "react";
 import axios from "axios";
 import Form from "react-bootstrap/Form";
 import { Toastify,loggedOutToasts } from "./toastify";
-import {LogoutButton} from "./logout"
-import {MiniMainBar} from "./minimainbar"
+import {LogoutButton} from "./logoutButton"
+import {MiniMainBar} from "./miniNavBar"
+import {deleteFromDataBase} from "./config/tokenApi.js"
 
 export const SideBar = () => {
   const sideMenuRef = useRef()
@@ -45,12 +46,9 @@ export const SideBar = () => {
 
   const handleLogout = () => {
     axios.get("/logout").then((data) => {
-      axios
-        .delete("/deltoken", {
-          data: { id: userid, data: null },
-        })
-        .then((data) => console.log(data))
-        .catch((err) => console.log(err));
+      deleteFromDataBase(JSON.parse(localStorage.getItem("id")))
+      .then((data) => console.log(data))
+      .catch((err) => console.log(err));
       setTimeout(() => {
         setlogin(false);
       }, 500);

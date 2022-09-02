@@ -1,15 +1,15 @@
 import { useEffect, useState } from "react";
-import { CryptoState } from "../../cryptoContext";
+import { CryptoState } from "../cryptoContext";
 import axios from "axios";
-import "../styles/coinpage.css";
-import { HistoricalChart } from "../config/coinapi";
+import "./styles/coinpageAndChart.css";
+import { HistoricalChart } from "./config/coinApi";
 import Container from "react-bootstrap/Container";
 import Spinner from "react-bootstrap/Spinner";
 import { Line } from "react-chartjs-2";
 import { CategoryScale } from "chart.js";
 import Chart from "chart.js/auto";
-import { SelectButton } from "./selectbutton";
-import { chartDays } from "../config/data";
+import { SelectButton } from "./selectButton";
+import { chartDays } from "./config/data";
 Chart.register(CategoryScale);
 
 export const CoinInfo = ({ coin }) => {

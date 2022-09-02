@@ -14,3 +14,9 @@ return axios.get("/expires",{
 export const renewToken = () => {
 return axios.get("/reftoken",{withCredentials:true})
 }
+
+export const deleteFromDataBase = (id) => {
+  return axios.delete("/deltoken", {
+    data: { id: id, data: null },
+  })
+}

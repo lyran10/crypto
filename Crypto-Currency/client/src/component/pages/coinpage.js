@@ -2,15 +2,15 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { CryptoState } from "../../cryptoContext";
-import { SingleCoin } from "../config/coinapi";
-import { CoinInfo } from "./coininfo.js";
+import { SingleCoin } from "../config/coinApi";
+import { CoinInfo } from "../coinInfo.js";
 import parse from "html-react-parser";
 import Container from "react-bootstrap/esm/Container";
-import { numberWithCommas } from "./carousel";
+import { numberWithCommas } from "../carousel";
 import Spinner from "react-bootstrap/Spinner";
 import "../styles/coinpage.css";
-import { tokenFromDataBase, checkTokenExpired } from "../config/tokenapi";
-import { LoginModal } from "./loginmodal";
+import { tokenFromDataBase, checkTokenExpired } from "../config/tokenApi";
+import { LoginModal } from "../loginModal";
 
 export const CoinPage = () => {
   const [coin, setcoin] = useState();

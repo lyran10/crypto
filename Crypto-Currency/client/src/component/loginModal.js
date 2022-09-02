@@ -4,9 +4,9 @@ import Modal from "react-bootstrap/Modal";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Container } from "react-bootstrap";
-import { tokenFromDataBase, checkTokenExpired } from "../config/tokenapi";
-import { CryptoState } from "../../cryptoContext.js";
-import "../styles/loginsignin.css";
+import { tokenFromDataBase, checkTokenExpired } from "./config/tokenApi";
+import { CryptoState } from "../cryptoContext.js";
+import "./styles/loginSignin.css";
 import {Toastify,errorToasts,loggedInToasts} from "./toastify.js"
 
 export const LoginModal = (props) => {

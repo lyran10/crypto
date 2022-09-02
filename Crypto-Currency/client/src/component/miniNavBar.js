@@ -1,8 +1,8 @@
 import { useEffect,useRef } from "react"
-import { LoginModal } from "./loginmodal"
-import { SignInModal } from "./signinmodal"
-import "../styles/navBar.css";
-import { CryptoState } from "../../cryptoContext";
+import { LoginModal } from "./loginModal"
+import { SignInModal } from "./signinModal"
+import "./styles/navBar.css";
+import { CryptoState } from "../cryptoContext";
 
 export const MiniMainBar = (props) => {
   const miniNavBar = useRef()

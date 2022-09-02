@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import { CryptoState } from "../../cryptoContext";
+import { CryptoState } from "./../cryptoContext";
 import axios from "axios";
-import { TrendingCoins } from "../config/coinapi";
-import "../styles/banner.css";
+import { TrendingCoins } from "./config/coinApi";
+import "./styles/bannerAndCarousel.css";
 import { Carousel } from "react-bootstrap";
 
 export const numberWithCommas = (x) => {
