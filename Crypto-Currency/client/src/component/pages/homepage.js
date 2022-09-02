@@ -1,5 +1,5 @@
 import { Banner } from "../banner.js";
-import { CoinsTable } from "../coinstable.js";
+import { CoinsTable } from "../coinsTable.js";
 import { CryptoState } from "../../cryptoContext";
 import { useEffect, useState } from "react";
 import "../styles/navBar.css";
