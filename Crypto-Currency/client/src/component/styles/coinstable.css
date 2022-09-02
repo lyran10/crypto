@@ -146,7 +146,7 @@ tr:hover{
 @media all and (max-width: 480px) { 
 
   .table > :not(caption) > * > *{
-    padding: 6px;
+    padding: 3px;
   }
 
   .custom-field.one input {
