@@ -32,9 +32,8 @@ export const Nav_Bar = () => {
   useEffect(() => {}, [login, spinner, translate, miniSideBarTranslate]);
 
   const handleClick = async () => {
-    tokenFromDataBase(JSON.parse(localStorage.getItem("id"))).then((data) => {
-      console.log(data);
-      checkTokenExpired(data.data.user[0])
+    let token = localStorage.getItem("token")
+      checkTokenExpired(`${token}`)
         .then((data) => {
           if (data.data.status) {
             translate === "translate"
@@ -43,6 +42,7 @@ export const Nav_Bar = () => {
           } else if (!data.data.status) {
             setlogin(data.data.status);
             localStorage.removeItem("id");
+            localStorage.removeItem("token");
             settranslate("translate");
             setminiSideBarTranslate("minitranslateback");
             setTimeout(() => {
@@ -53,7 +53,6 @@ export const Nav_Bar = () => {
         .catch((err) => {
           console.log(err);
         });
-    });
   };
 
   const handleMiniBar = () => {

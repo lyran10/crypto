@@ -45,13 +45,12 @@ const CryptoContext = ({ children }) => {
   const handleToken = () => {
     tokenFromDataBase(JSON.parse(localStorage.getItem("id")))
       .then((data) => {
-        console.log(data);
         setuserid(data.data.user[0].id);
         setusername(data.data.user[0].user_name);
         getdata();
-        checkTokenExpired(data.data.user[0])
+        localStorage.setItem("token",data.data.user[0]?.session_id)
+        checkTokenExpired(data.data.user[0]?.session_id)
           .then((data) => {
-            console.log(data);
             setlogin(data.data.status);
             if (data.data.error) {
               renewToken()
@@ -62,6 +61,7 @@ const CryptoContext = ({ children }) => {
                   if (err.response.data.error === "jwt expired") {
                     setlogin(err.response.data.status);
                     localStorage.removeItem("id");
+                    localStorage.removeItem("token");
                     settranslate("translate");
                     setminiSideBarTranslate("minitranslateback");
                     setTimeout(() => {

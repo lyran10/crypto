@@ -55,6 +55,7 @@ export const SideBar = () => {
         setlogin(false);
       }, 500);
       localStorage.removeItem("id");
+      localStorage.removeItem("token");
       if (data.data.status === "cleared") {
         setTimeout(() => {return loggedOutToasts("Logged Out")},700)
         setlogout(true)

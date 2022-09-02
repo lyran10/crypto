@@ -40,10 +40,6 @@ export const CoinPage = () => {
   };
 
   const addCoin = (e) => {
-    // tokenFromDataBase(JSON.parse(localStorage.getItem("id"))).then((data) => {
-    //   checkTokenExpired(data.data.user[0])
-    //     .then((data) => {
-    //       if (data.data.status) {
       let token = JSON.parse(localStorage.getItem("token"))
             axios
               .post(
@@ -71,12 +67,6 @@ export const CoinPage = () => {
               .catch((err) => {
                 console.log(err);
               });
-    //       }
-    //     })
-    //     .catch((err) => {
-    //       console.log(err);
-    //     });
-    // });
   };
 
   useEffect(() => {
