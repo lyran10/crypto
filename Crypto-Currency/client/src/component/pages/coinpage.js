@@ -40,7 +40,7 @@ export const CoinPage = () => {
   };
 
   const addCoin = (e) => {
-      let token = JSON.parse(localStorage.getItem("token"))
+      let token = localStorage.getItem("token")
             axios
               .post(
                 "/addcoin",
