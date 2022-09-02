@@ -97,7 +97,6 @@ export const SideBar = () => {
           className={`sideBar ${
             !login || cleared === "" ? "d-flex" : "d-none"
           } ${translate} justify-content-start text-light`}
-          ref={sideMenuRef}
         >
           <ul
             className="sideBarUl"
@@ -112,17 +111,18 @@ export const SideBar = () => {
                 <span>{`${username}`}</span>
               </div>
             </li>
-            <li>
-              {formSelect()}
-            </li>
             <li className="li">
               <div
+              ref={sideMenuRef}
                 className="watchList bg-dark d-flex flex-column"
                 style={{
                   minHeight: "50vh",
                   borderRadius: "10px",
                 }}
               >
+                <div>
+                {formSelect()}
+                </div>
                 <span className="h6 mt-3 align-self-center fw-bold">
                   Watch List
                 </span>
