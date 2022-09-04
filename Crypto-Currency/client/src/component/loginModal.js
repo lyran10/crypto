@@ -134,7 +134,7 @@ export const LoginModal = (props) => {
                     className="input p-1"
                     name="user_name"
                     onChange={(e) =>
-                      setinputs((state) => ({
+                      setInputs((state) => ({
                         ...state,
                         user_name: e.target.value,
                       }))
