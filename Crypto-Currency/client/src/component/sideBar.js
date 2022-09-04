@@ -40,7 +40,7 @@ export const SideBar = () => {
 
   useEffect(() => {
     if(login === true){
-      closeSideMenuBar(sideMenuRef,"translate",openSideNav,"click")
+      closeSideMenuBar(sideMenuRef,"translate",setOpenSideNav,"click")
     }
   }, [openSideNav, login, currency, openMiniNav]);
 

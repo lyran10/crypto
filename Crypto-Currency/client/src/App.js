@@ -10,10 +10,11 @@ import { useEffect } from "react";
 function App() {
   const { modal } = CryptoState();
 
-  useEffect(() => {}, [modal]);
+  useEffect(() => {}, [modal]); // update modal
 
   return (
     <div className="">
+      {/* if modal is true then show that session is over */}
       {modal ? <Modale /> : null}
       <Nav_Bar />
       <Routes>

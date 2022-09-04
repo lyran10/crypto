@@ -44,6 +44,7 @@ const CryptoContext = ({ children }) => {
     }, 1200);
   };
 
+// if session is over remove everything and show modal that the session is over
   const userTokenExpired = (error) => {
     setLogin(error);
     localStorage.removeItem("id");
@@ -55,6 +56,7 @@ const CryptoContext = ({ children }) => {
     }, 1000);
   }
 
+// check if refresh token not expired, if not expired get new access token
   const renewIfExpired = () => {
     renewToken()
     .then((data) => {
@@ -62,11 +64,12 @@ const CryptoContext = ({ children }) => {
     })
     .catch((err) => {
       if (err.response.data.error === "jwt expired") {
-        userTokenExpired(err.response.data.status)
+        userTokenExpired(err.response.data.status) // send message expired
       }
     });
   }
 
+// handle the token in the use Effect hook and setting states to use the data in other components
   const handleToken = () => {
     tokenFromDataBase(JSON.parse(localStorage.getItem("id")))
       .then((data) => {
@@ -77,9 +80,9 @@ const CryptoContext = ({ children }) => {
         checkTokenExpired(data.data.user[0]?.session_id)
           .then((data) => {
             if(data.data.status){
-              setLogin(data.data.status);
+              setLogin(data.data.status); // set login to true if not expired
             }else if (data.data.error) {
-                renewIfExpired()
+                renewIfExpired() // renew token if refresh token not expired
             }
           })
           .catch((err) => console.log(err));
