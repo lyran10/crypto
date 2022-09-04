@@ -96,7 +96,7 @@ export const SideBar = () => {
           style={{ paddingRight: "0px" }}
           className={`sideBar ${
             !login || cleared === "" ? "d-flex" : "d-none"
-          } ${translate} justify-content-start text-light`}
+          } ${openSideNav} justify-content-start text-light`}
         >
           <ul
             className="sideBarUl"
@@ -108,7 +108,7 @@ export const SideBar = () => {
             >
               <div className="d-flex flex-column text-center">
                 <span>User Name</span>
-                <span>{`${username}`}</span>
+                <span>{`${userName}`}</span>
               </div>
             </li>
             <li className="li">

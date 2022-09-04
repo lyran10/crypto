@@ -45,7 +45,7 @@ export const CoinPage = () => {
       setLogin(true);
       const { data } = await axios.post(
         "http://localhost:3001/addcoin",
-        {coin: coin ,id: userid},
+        {coin: coin ,id: userId},
         { withCredentials: true }
       );
       console.log(data)
@@ -149,14 +149,14 @@ export const CoinPage = () => {
                 id={coin.id}
                 onClick={(e) => addCoin(e)}
                 className={`btn text-light border-warning ${
-                  userlist ? (userlist.includes(id) ? "bg-danger" : "") : null
+                  userList ? (userList.includes(id) ? "bg-danger" : "") : null
                 } mb-3 w-75`}
                 disabled={
-                  userlist ? (userlist.includes(id) ? true : false) : null
+                  userList ? (userList.includes(id) ? true : false) : null
                 }
               >
-                {userlist
-                  ? userlist.includes(id)
+                {userList
+                  ? userList.includes(id)
                     ? "Added to Watch List"
                     : "Add to Watch List"
                   : null}

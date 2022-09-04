@@ -20,7 +20,7 @@ export const LoginModal = (props) => {
     login,
     setOpenMiniNav,
   } = CryptoState();
-  const [inputs, setiInputs] = useState("");
+  const [inputs, setInputs] = useState("");
   const [show, setshow] = useState(false);
   const navigate = useNavigate();
   const [fullscreen, setFullscreen] = useState(true);

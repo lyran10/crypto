@@ -14,7 +14,7 @@ export const Modale = () => {
   const handleClose = () => {
     setShow(false);
     navigate("/log");
-    setmodal(false);
+    setModal(false);
   };
 
   const closeButton = () => {

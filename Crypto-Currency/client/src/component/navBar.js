@@ -27,6 +27,7 @@ export const Nav_Bar = () => {
     setOpenSideNav,
     openMiniNav,
     setOpenMiniNav,
+    renewIfExpired
   } = CryptoState();
 
   useEffect(() => {}, [login, spinner, openSideNav, openMiniNav]);
