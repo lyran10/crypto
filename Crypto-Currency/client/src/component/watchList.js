@@ -16,6 +16,7 @@ export const WatchList = () => {
     deleteItem,
     setDeletedItem,
     setLogin,
+    renewIfExpired
   } = CryptoState();
 
   useEffect(() => {
