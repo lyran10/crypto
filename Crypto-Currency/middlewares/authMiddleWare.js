@@ -47,4 +47,4 @@ const refToken = (req, res, next) => {
   }
 };
 
-module.exports = { checkUser, refToken, Auth };
+module.exports = { checkUser, refToken };
