@@ -97,7 +97,7 @@ export const Nav_Bar = () => {
           <Form.Select
             value={currency}
             onChange={(e) => handleChange(e)}
-            className="mini text-light bg-dark"
+            className="select text-light bg-dark"
             aria-label="Default select example"
           >
             <option value="USD">USD</option>
