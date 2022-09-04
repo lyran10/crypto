@@ -10,7 +10,9 @@ import "./styles/loginsignin.css";
 import {Toastify,errorToasts,loggedInToasts} from "./toastify.js"
 
 export const LoginModal = (props) => {
-  const { dNone, logins, button, sideButton, tokenLogin } = props;
+  const { dNone, logins, button, sideButton, tokenLogin } = props; // props from navBar sideBar and coin page components
+
+  // All states from context api
   const {
     SpinnerLoading,
     setOpenSideNav,
@@ -20,18 +22,20 @@ export const LoginModal = (props) => {
     login,
     setOpenMiniNav,
   } = CryptoState();
-  const [inputs, setInputs] = useState("");
-  const [show, setshow] = useState(false);
+  const [inputs, setInputs] = useState("");// state fro the inputs of user
+  const [show, setshow] = useState(false);// state for modal
   const navigate = useNavigate();
   const [fullscreen, setFullscreen] = useState(true);
   const [Show, setShow] = useState(false);
   axios.defaults.withCredentials = true;
 
+// function to make madal responsive
   function handleShow(breakpoint) {
     setFullscreen(breakpoint);
     setShow(true);
   }
 
+// check if user name exists in the data base, if exists set the state with the info and send a log in message
   const checkLogin = () => {
     axios
     .post("/login", inputs, { withCredentials: true })
@@ -59,23 +63,25 @@ export const LoginModal = (props) => {
     .catch((error) => console.log(error));
    }
 
+  // check the inputs
    const handleClick = (e) => {
     e.preventDefault();
-    if (inputs === "") {
-      errorToasts("Fill the details");
+    if (inputs === "") { // if inputs is "" means there are no inputs
+      errorToasts("Fill the details");// send this message
     } else if (inputs.user_name === "" || inputs.user_name === undefined) {
-      errorToasts("Enter User Name");
+      errorToasts("Enter User Name"); // if only user name is not given then send this message
     } else if (
       inputs.user_password === "" ||
       inputs.user_password === undefined
     ) {
-      errorToasts("Enter Password");
+      errorToasts("Enter Password");// if only user password is not given then send this message
     }else{
-      checkLogin()
+      checkLogin()// if none of the above then run this function
     }
     
   };
 
+//check user token 
   const checkUser = async () => {
     tokenFromDataBase(JSON.parse(localStorage.getItem("id"))).then((data) => {
       checkTokenExpired(data.data.user[0]).then((data) => {
@@ -86,6 +92,7 @@ export const LoginModal = (props) => {
     });
   };
 
+// whne logged in close both the navs
   useEffect(() => {
     checkUser();
     setOpenSideNav("translate");
@@ -96,6 +103,7 @@ export const LoginModal = (props) => {
     setshow(true);
   }, 500);
 
+// show the login button when not logged in
   return (
     <section>
       {!login ? (

@@ -3,8 +3,10 @@ import { numberWithCommas } from "./carousel";
 import { CryptoState } from "../cryptoContext";
 import axios from "axios";
 import { checkTokenExpired } from "./config/tokenapi";
+import { useNavigate } from "react-router-dom";
 
 export const WatchList = () => {
+  const navigate = useNavigate()
   // All the states from the context API
   const {
     userList,
@@ -26,7 +28,7 @@ export const WatchList = () => {
     getdata();
   }, [addingCoin, deleteItem, currency]);
 
-
+//function to delete the coin from database
   const deleteCoinFromDataBase = async (userId) => {
     try {
       setLogin(true);
@@ -38,11 +40,11 @@ export const WatchList = () => {
       );
       setDeletedItem(data);
     } catch (error) {
-      console.log(error)
+      navigate("/")
     }
     
   }
-
+// check if the token is expired then delete the coin 
   const handleDelete = async (e) => {
     let token = localStorage.getItem("token")
       checkTokenExpired(`${token}`)
@@ -55,10 +57,11 @@ export const WatchList = () => {
           }
         })
         .catch((err) => {
-          console.log(err);
+          navigate("/")
         });
   };
 
+// display the waltch list of the user by using map function
   return (
     <div>
       {userList

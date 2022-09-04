@@ -15,8 +15,6 @@ const {
   deleteCoin,
 } = require("../controllers/watchList.js");
 
-router.get("/login", checkUser);
-
 router.post("/signup", createUser);
 
 router.post("/login", userLogin);

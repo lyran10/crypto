@@ -1,7 +1,7 @@
 import { ToastContainer, toast } from "react-toastify";
 import 'react-toastify/dist/ReactToastify.css';
 
-
+// toastify to send messages to the user if needed
 export const Toastify = () => {
   return(
     <>

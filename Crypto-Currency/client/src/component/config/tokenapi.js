@@ -1,5 +1,7 @@
 import axios from "axios"
 
+// functions to check the token
+
 export const tokenFromDataBase = (id) => {
   return axios.post("/token",{id},{withCredentials:true})
 }

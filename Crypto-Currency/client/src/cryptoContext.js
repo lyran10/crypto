@@ -8,9 +8,10 @@ import {
 } from "./component/config/tokenapi";
 import axios from "axios";
 import "./component/styles/navBar.css";
+import { useNavigate } from "react-router-dom";
 
 const Crypto = createContext();
-
+const navigate = useNavigate()
 const CryptoContext = ({ children }) => {
   const [login, setLogin] = useState(false);
   const [currency, setCurrency] = useState("ILS");
@@ -85,9 +86,9 @@ const CryptoContext = ({ children }) => {
                 renewIfExpired() // renew token if refresh token not expired
             }
           })
-          .catch((err) => console.log(err));
+          .catch((err) => navigate("/"));
       })
-      .catch((err) => console.log(err));
+      .catch((err) => navigate("/"));
   };
 
 // function to get the user coins which are stored in the watch list from the database to display in the watch list

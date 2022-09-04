@@ -5,11 +5,12 @@ import "./styles/navBar.css";
 import { CryptoState } from "../cryptoContext";
 
 export const MiniMainBar = (props) => {
-  const miniNavBar = useRef()
+  const miniNavBar = useRef() // useRef to target mini nav
   const {
     setOpenMiniNav} = CryptoState()
-  const {selectForm, minitranslate} = props
+  const {selectForm, minitranslate} = props // props from side bar
 
+// function to close mini nav when clicked out of the mini nav
   const closeMiniNavBar = (ref,close,set,event) => {
     document.body.addEventListener(event,(event) => {
       if(ref.current){

@@ -1,3 +1,4 @@
+// buttons that are in the chart
 export const SelectButton = ({ children, selected, onClick }) => {
   return (
     <span

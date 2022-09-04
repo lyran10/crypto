@@ -24,7 +24,7 @@ export const Home = () => {
     login
   );
 
-// show the banner and carousel in 500 mili seconds
+// show the banner and coins table in 500 mili seconds
   setTimeout(() => {
     setshow(true);
   }, 500);

@@ -9,17 +9,19 @@ import { numberWithCommas } from "./carousel";
 import { InputSearch } from "./inputSearch";
 
 export const CoinsTable = () => {
-  const [search, setSearch] = useState("");
+  const [search, setSearch] = useState(""); // search state for the input when changes
+  // All states from the context api
   const { symbol, currency, coins, loading, fetchCoins } = CryptoState();
   const navigate = useNavigate();
 
+// fetch all the coins data from an api update symbol and currency also
   useEffect(() => {
     fetchCoins();
   }, [symbol, currency]);
 
+// filter all the coins that matches the search state
   const handleSearch = () => {
-
-    return coins.filter(
+      return coins.filter(
       (coin) =>
         coin.name.toLowerCase().includes(search.toLowerCase()) ||
         coin.symbol.toLowerCase().includes(search.toLowerCase())
@@ -45,11 +47,13 @@ export const CoinsTable = () => {
         <span>
           Click on the coins from the table for more information
         </span>
+        {/* send the search state to the inputSearch component set the state */}
           <InputSearch search = {setSearch}/>
 
         {loading ? (
           <Spinner animation="border" variant="warning" />
-        ) : handleSearch().length === 0 ? (
+          // if handleSearch().length is 0 thenthere is no match with the input search so send amessage not found
+        ) : handleSearch().length === 0 ? ( 
           <h1>Not Found</h1>
         ) : (
           <Table variant="dark" className="coinTable w-auto" style={{borderRadius:"5px"}}>
@@ -62,6 +66,7 @@ export const CoinsTable = () => {
               </tr>
             </thead>
             <tbody>
+              {/* display the coins which matches the input search */}
               {handleSearch().map((row) => {
                 let profit = row.price_change_percentage_24h >= 0;
                 return (

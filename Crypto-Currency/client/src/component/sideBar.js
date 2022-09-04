@@ -10,9 +10,11 @@ import {LogoutButton} from "./logoutButton"
 import {MiniMainBar} from "./miniNavBar"
 import {deleteFromDataBase} from "./config/tokenapi.js"
 
-export const SideBar = () => {
-  const sideMenuRef = useRef()
-  const [logout,setlogout] = useState(false)
+export const SideBar = (props) => {
+  const {formSelect} = props
+  const sideMenuRef = useRef()// useRef to targate the side nav
+  const [logout,setlogout] = useState(false) // state to set logout
+  // All states from context api
   const {
     userName,
     cleared,
@@ -30,6 +32,7 @@ export const SideBar = () => {
   } = CryptoState();
   const navigate = useNavigate();
 
+    //function when clicked outside if the side nav close the side nav 
   const closeSideMenuBar = (ref,close,set,event) => {
     document.body.addEventListener(event,(event) => {
       if(ref.current){
@@ -44,11 +47,12 @@ export const SideBar = () => {
     }
   }, [openSideNav, login, currency, openMiniNav]);
 
+// functio to logout when clicked on the button, remove all the info that had been set in the states and alose remove cookie by using logout api
   const handleLogout = () => {
     axios.get("/logout").then((data) => {
       deleteFromDataBase(JSON.parse(localStorage.getItem("id")))
-      .then((data) => console.log(data))
-      .catch((err) => console.log(err));
+      .then((data) => console.log())
+      .catch((err) => navigate("/"));
       setTimeout(() => {
         setLogin(false);
       }, 500);
@@ -69,26 +73,14 @@ export const SideBar = () => {
     });
   };
 
+// set the currency when changed ILS and USD
   const handleChange = (e) => {
     SpinnerLoading();
     setCurrency(e.target.value);
     setOpenMiniNav("minitranslateback");
   };
 
-	const formSelect = () => {
-		return(
-			<Form.Select
-			value={currency}
-			onChange={(e) => handleChange(e)}
-			className="mini text-light bg-dark"
-			aria-label="Default select example"
-		>
-			<option value="USD">USD</option>
-			<option value="ILS">ILS</option>
-		</Form.Select>
-		)
-	}
-
+// show the side nav only when logged in
   return (
     <>
       {login ? (

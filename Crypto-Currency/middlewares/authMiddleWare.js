@@ -19,18 +19,6 @@ const checkUser = (req, res, next) => {
   });
 };
 
-const Auth = (req, res, next) => {
-  const header = req.headers["authorization"];
-  const token = header && header.split(" ")[1];
-  if (token === undefined || token === null)
-    return res.json({ error: "token null",token:token });
-  jwt.verify(token, `${process.env.JWT_TOKEN}`, (error, user) => {
-    if (error) return res.json({ error: error.message, status: false });
-    req.user = user.id;
-    next();
-  });
-};
-
 const refToken = (req, res, next) => {
   try {
     const refToken = req.cookies.token;
@@ -50,9 +38,9 @@ const refToken = (req, res, next) => {
               httpOnly: true,
               secure : true
             })
-            .json({ status: true, renew: "renewed" });
+            .json({ status: true, renew: "renewed",user:data });
         })
-        .catch((err) => console.log(err));
+        .catch((err) => res.status(401).json({status : false, error : err.message}));
     });
   } catch (error) {
     return res.status(401).json({ error: error.message, status: false });

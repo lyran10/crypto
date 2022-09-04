@@ -36,25 +36,6 @@
   transition: 0.3s;
 }
 
-.translateback{
-  transform: translateX(-400px);
-}
-
-.translate{
-  transform: translateX(0px);
-}
-
-
-.minitranslateback{
-  transform: translateY(-400px);
-}
-
-.minitranslate{
-  transform: translateY(50px);
-}
-
-
-
 .sideBarUl{
   width: 400px;
   padding-left: 0px;
@@ -87,6 +68,25 @@ li{
   width: 100%;
 } 
 
+/* classes to open and close the side nav */
+.translateback{
+  transform: translateX(-400px);
+}
+
+.translate{
+  transform: translateX(0px);
+}
+
+/* classes to open and close the mini nav */
+.minitranslateback{
+  transform: translateY(-400px);
+}
+
+.minitranslate{
+  transform: translateY(50px);
+}
+
+/* loading page */
 .loadingPage{
   position: absolute;
   height:100vh;

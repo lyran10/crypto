@@ -11,12 +11,14 @@ export const Modale = () => {
   const navigate = useNavigate();
   const { setModal } = CryptoState();
 
+// function to show modal
   const handleClose = () => {
     setShow(false);
     navigate("/log");
     setModal(false);
   };
 
+// close button in the modal
   const closeButton = () => {
     setShow(false);
     setModal(false);

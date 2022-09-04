@@ -1,5 +1,5 @@
 
-
+// search input of the coins
 export const InputSearch = (props) => {
   const {search} = props
   return(

@@ -13,10 +13,12 @@ import { chartDays } from "./config/data";
 Chart.register(CategoryScale);
 
 export const CoinInfo = ({ coin }) => {
-  const [history, setHistory] = useState();
-  const [days, setdays] = useState(1);
+  const [history, setHistory] = useState();// state to set the data of the past prices of the coins
+  const [days, setdays] = useState(1);//state to set the how many past days want to set the state to example to get the info of the coin in the passed 30 days
   const { currency, handleToken } = CryptoState();
 
+
+//fetch coin history data
   const fetchHistory = async () => {
     const { data } = await axios.get(HistoricalChart(coin.id, days, currency), {
       withCredentials: false,
@@ -24,6 +26,7 @@ export const CoinInfo = ({ coin }) => {
     setHistory(data.prices);
   };
 
+//use handle token function to keep a check on the token if there is id and fetch the history data also
   useEffect(() => {
     if (JSON.parse(localStorage.getItem("id") !== null)) {
       handleToken();
@@ -31,6 +34,9 @@ export const CoinInfo = ({ coin }) => {
     fetchHistory();
   }, [currency, days, JSON.parse(localStorage.getItem("id"))]);
 
+
+// display data with a map function in a chart below
+// also used buttons to show how many days passed a user wants the data 
   return (
   <section>
     <Container

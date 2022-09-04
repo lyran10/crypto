@@ -19,15 +19,18 @@ export const SignInModal = (props) => {
   const [fullscreen, setFullscreen] = useState(true);
   const [isSigned,setIsSigned] = useState(false)
 
+// function to make the modal responsive
   function handleShow(breakpoint) {
     setFullscreen(breakpoint);
     setShow(true);
   }
 
+// put login in dependency so it will be updated and render
   useEffect(() => {
     SpinnerLoading();
   }, [login]);
 
+// create user in the data base
   const signIn = () => {
     axios
       .post("/signup", inputs)
@@ -47,10 +50,11 @@ export const SignInModal = (props) => {
 
   const handleClick = (e) => {
     e.preventDefault();
+      // regex for email pattern
     const emailPattern =
       /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
-    if (
+    if (// check if all the inputs are empty
       !inputs.user_confirm_password ||
       !inputs.user_password ||
       !inputs.user_name ||
@@ -58,13 +62,13 @@ export const SignInModal = (props) => {
     ) {
       return errorToasts("Fill all the Details");
     }else if (emailPattern.test(inputs.user_email_id) === false) {
-      return errorToasts("Email ID not valid");
+      return errorToasts("Email ID not valid");// if email pattern does not match
     }else if (inputs.user_password.length < 8) {
-      return errorToasts("Password should be minimum of 8 characters");
-    }else if (inputs.user_confirm_password !== inputs.user_password) {
+      return errorToasts("Password should be minimum of 8 characters");// if password is less then 8 characters
+    }else if (inputs.user_confirm_password !== inputs.user_password) {// if password does not match
       return errorToasts("Password does not match");
     }
-      signIn()
+      signIn()// if none of the above then create a user
     
   };
 
@@ -74,6 +78,7 @@ export const SignInModal = (props) => {
 
   return (
     <>
+     {/* if not login then show the sign in button */}
       {!login ? (
         <Button
           style={{ backgroundColor: "gold", border: "none" }}

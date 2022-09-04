@@ -1,3 +1,5 @@
+// data of the passed prices of the coins
+
 export const chartDays = [
   {
     label: "24 Hours",
