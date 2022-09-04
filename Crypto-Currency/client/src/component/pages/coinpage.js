@@ -44,7 +44,7 @@ export const CoinPage = () => {
     try {
       setLogin(true);
       const { data } = await axios.post(
-        "http://localhost:3001/addcoin",
+        "/addcoin",
         {coin: coin ,id: userId},
         { withCredentials: true }
       );

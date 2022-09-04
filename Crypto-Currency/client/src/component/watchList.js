@@ -29,7 +29,7 @@ export const WatchList = () => {
       setLogin(true);
       let id = userId;
       const { data } = await axios.delete(
-        "http://localhost:3001/deletecoin",
+        "/deletecoin",
         { data: { id: id } },
         { withCredentials: true }
       );
