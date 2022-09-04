@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { CryptoState } from "../../cryptoContext";
 import { SingleCoin } from "../config/coinapi";
 import { CoinInfo } from "../coinInfo.js";
@@ -13,9 +13,9 @@ import { checkTokenExpired } from "../config/tokenapi";
 import { LoginModal } from "../loginModal";
 
 export const CoinPage = () => {
-  const [coin, setCoin] = useState();
-  const { id } = useParams();
-  const navigate = useNavigate();
+  const [coin, setCoin] = useState(); // fetch coins and store in this state
+  const { id } = useParams();// use the id of the coin
+  // All states from the context api
   const {
     currency,
     symbol,
@@ -33,6 +33,7 @@ export const CoinPage = () => {
     renewIfExpired
   } = CryptoState();
 
+// fetch coin data from an api
   const fetchCoin = async () => {
     const { data } = await axios.get(SingleCoin(id), {
       withCredentials: false,
@@ -40,6 +41,7 @@ export const CoinPage = () => {
     setCoin(data);
   };
 
+// function to add the coin in the data base
   const addCoinInDataBase = async (coin) => {
     try {
       setLogin(true);
@@ -49,19 +51,22 @@ export const CoinPage = () => {
         { withCredentials: true }
       );
       console.log(data)
-      setAddingCoin(data);
-      setOpenSideNav("translateback");
+      setAddingCoin(data);// storing the added coin in this state to put in the use effect dependencies
+      setOpenSideNav("translateback");// show the watch list
     } catch (error) {
       console.log(error)
     }
   }
 
+// before adding coin check if the token expired or not if expired send a message that expired else add the coin
   const addCoin = (e) => {
     let token = localStorage.getItem("token")
+    console.log(token)
     checkTokenExpired(`${token}`)
       .then((data) => {
         console.log(data)
         if (data.data.error) {
+          console.log(data)
           renewIfExpired(addCoinInDataBase(e.target.id))
           
         }else{
@@ -73,14 +78,15 @@ export const CoinPage = () => {
       });
   }; 
 
+// if there is an user id then run the handle token function it checks if the token is expired, if expired renew it
   useEffect(() => {
     if (JSON.parse(localStorage.getItem("id") !== null)) {
       handleToken();
     }
-    fetchCoin();
+    fetchCoin();// fetch the coins from an api
   }, [addingCoin, deleteItem, login, JSON.parse(localStorage.getItem("id"))]);
 
-  if (!coin)
+  if (!coin)// show spinner loader until coins data is not fetched
     return <Spinner className="" animation="border" variant="warning" />;
 
   return (
