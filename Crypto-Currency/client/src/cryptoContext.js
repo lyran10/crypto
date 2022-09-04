@@ -11,8 +11,8 @@ import "./component/styles/navBar.css";
 import { useNavigate } from "react-router-dom";
 
 const Crypto = createContext();
-const navigate = useNavigate()
 const CryptoContext = ({ children }) => {
+  const navigate = useNavigate()
   const [login, setLogin] = useState(false);
   const [currency, setCurrency] = useState("ILS");
   const [symbol, setSymbol] = useState("₪");
