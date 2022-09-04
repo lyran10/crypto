@@ -5,7 +5,7 @@ const {
   getToken,
   removeToken,
 } = require("../controllers/users.js");
-const { checkUser, refToken } = require("../middlewares/authMiddleWare.js");
+const { checkUser, refToken } = require("../userAuth/userAuth.js");
 
 // watch List functions
 const {
