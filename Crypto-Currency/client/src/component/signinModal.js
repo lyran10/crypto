@@ -38,7 +38,7 @@ export const SignInModal = (props) => {
           setShow(false);
           navigate("/");
           setIsSigned(true)
-          setTimeout(() => {setissigned(false)},8000)
+          setTimeout(() => {setIsSigned(false)},8000)
           setTimeout(() => {return singedInToasts("Signed In")},100) 
         }
       })
