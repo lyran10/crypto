@@ -9,7 +9,7 @@ import { numberWithCommas } from "./carousel";
 import { InputSearch } from "./inputSearch";
 
 export const CoinsTable = () => {
-  const [search, setsearch] = useState("");
+  const [search, setSearch] = useState("");
   const { symbol, currency, coins, loading, fetchCoins } = CryptoState();
   const navigate = useNavigate();
 
@@ -45,7 +45,7 @@ export const CoinsTable = () => {
         <span>
           Click on the coins from the table for more information
         </span>
-          <InputSearch search = {setsearch}/>
+          <InputSearch search = {setSearch}/>
 
         {loading ? (
           <Spinner animation="border" variant="warning" />

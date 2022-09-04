@@ -17,53 +17,53 @@ import { SignInModal } from "./signinModal";
 export const Nav_Bar = () => {
   const {
     currency,
-    setcurrency,
+    setCurrency,
     login,
-    setlogin,
+    setLogin,
     spinner,
     SpinnerLoading,
-    setmodal,
-    translate,
-    settranslate,
-    miniSideBarTranslate,
-    setminiSideBarTranslate,
+    setModal,
+    openSideNav,
+    setOpenSideNav,
+    openMiniNav,
+    setOpenMiniNav,
   } = CryptoState();
 
-  useEffect(() => {}, [login, spinner, translate, miniSideBarTranslate]);
+  useEffect(() => {}, [login, spinner, openSideNav, openMiniNav]);
+
+  const openAndCloseWatchList = () => {
+    return   openSideNav === "translate"
+       ?setOpenSideNav("translateback")
+       : setOpenSideNav("translate");
+
+  }
 
   const handleClick = async () => {
     let token = localStorage.getItem("token")
-      checkTokenExpired(`${token}`)
-        .then((data) => {
-          if (data.data.status) {
-            translate === "translate"
-              ? settranslate("translateback")
-              : settranslate("translate");
-          } else if (!data.data.status) {
-            setlogin(data.data.status);
-            localStorage.removeItem("id");
-            localStorage.removeItem("token");
-            settranslate("translate");
-            setminiSideBarTranslate("minitranslateback");
-            setTimeout(() => {
-              setmodal(true);
-            }, 1000);
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-  };
+     checkTokenExpired(`${token}`)
+       .then((data) => {
+         if (data.data.error) {
+           renewIfExpired()
+           openAndCloseWatchList()
+         }else{
+           openAndCloseWatchList()
+         }
+       })
+       .catch((err) => {
+         console.log(err);
+       });
+ };
 
   const handleMiniBar = () => {
-    miniSideBarTranslate === "minitranslate"
-      ? setminiSideBarTranslate("minitranslateback")
-      : setminiSideBarTranslate("minitranslate");
+    openMiniNav === "minitranslate"
+      ? setOpenMiniNav("minitranslateback")
+      : setOpenMiniNav("minitranslate");
   };
 
   const handleChange = (e) => {
     SpinnerLoading();
-    setcurrency(e.target.value);
+    setCurrency(e.target.value);
+    setOpenMiniNav("minitranslateback")
   };
 
   return (

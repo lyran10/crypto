@@ -2,42 +2,64 @@ import { useEffect } from "react";
 import { numberWithCommas } from "./carousel";
 import { CryptoState } from "../cryptoContext";
 import axios from "axios";
+import { checkTokenExpired } from "./config/tokenapi";
 
 export const WatchList = () => {
   const {
-    userlist,
-    addcoin,
+    userList,
+    addingCoin,
     getdata,
     fetchCoins,
     coins,
     symbol,
     currency,
-    deleteitem,
-    setdeleteditem,
-    setlogin,
+    deleteItem,
+    setDeletedItem,
+    setLogin,
   } = CryptoState();
 
   useEffect(() => {
     fetchCoins();
     getdata();
-  }, [addcoin, deleteitem, currency]);
+  }, [addingCoin, deleteItem, currency]);
+
+  const deleteCoinFromDataBase = async (userId) => {
+    try {
+      setLogin(true);
+      let id = userId;
+      const { data } = await axios.delete(
+        "http://localhost:3001/deletecoin",
+        { data: { id: id } },
+        { withCredentials: true }
+      );
+      setDeletedItem(data);
+    } catch (error) {
+      console.log(error)
+    }
+    
+  }
 
   const handleDelete = async (e) => {
-    setlogin(true);
-    let id = e.target.id;
-    const { data } = await axios.delete(
-      "/deletecoin",
-      { data: { id: id } },
-      { withCredentials: true }
-    );
-    setdeleteditem(data);
+    let token = localStorage.getItem("token")
+      checkTokenExpired(`${token}`)
+        .then((data) => {
+          if (data.data.error) {
+            renewIfExpired()
+            deleteCoinFromDataBase(e.target.id)
+          }else{
+            deleteCoinFromDataBase(e.target.id)
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        });
   };
 
   return (
     <div>
-      {userlist
+      {userList
         ? coins.map((coin) => {
-            if (userlist.includes(coin.id)) {
+            if (userList.includes(coin.id)) {
               return (
                 <li
                   key={coin?.id}

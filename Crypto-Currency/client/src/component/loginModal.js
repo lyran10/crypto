@@ -13,14 +13,14 @@ export const LoginModal = (props) => {
   const { dNone, logins, button, sideButton, tokenLogin } = props;
   const {
     SpinnerLoading,
-    settranslate,
-    setusername,
-    setuserid,
-    setlogin,
+    setOpenSideNav,
+    setUserName,
+    setUserId,
+    setLogin,
     login,
-    setminiSideBarTranslate,
+    setOpenMiniNav,
   } = CryptoState();
-  const [inputs, setinputs] = useState("");
+  const [inputs, setiInputs] = useState("");
   const [show, setshow] = useState(false);
   const navigate = useNavigate();
   const [fullscreen, setFullscreen] = useState(true);
@@ -36,24 +36,24 @@ export const LoginModal = (props) => {
     axios
     .post("/login", inputs, { withCredentials: true })
     .then((data) => {
-      setTimeout(() => {setlogin(data.data.status);}, 500);
+      setTimeout(() => {setLogin(data.data.status);}, 500);
        if(data.data.notExists) {
         errorToasts(data.data.notExists);
       }else if (data.data.user) {
-        setusername(data.data.user.user_name);
-        setuserid(data.data.user.id);
+        setUserName(data.data.user.user_name);
+        setUserId(data.data.user.id);
 
         if (JSON.parse(localStorage.getItem("id")) == null) {
           localStorage.setItem("id", JSON.stringify(data.data.user.id));
         }
         SpinnerLoading();
         setShow(false) 
-        setinputs("");
+        setInputs("");
         setTimeout(() => {return loggedInToasts("Logged In")},700)
       } else {
         navigate("/");
         setShow(false);
-        setinputs("");
+        setInputs("");
       }
     })
     .catch((error) => console.log(error));
@@ -88,8 +88,8 @@ export const LoginModal = (props) => {
 
   useEffect(() => {
     checkUser();
-    settranslate("translate");
-    setminiSideBarTranslate("minitranslateback");
+    setOpenSideNav("translate");
+    setOpenMiniNav("minitranslateback");
   }, []);
 
   setTimeout(() => {
@@ -150,7 +150,7 @@ export const LoginModal = (props) => {
                     style={{ width: "100%" }}
                     className="input p-1"
                     onChange={(e) =>
-                      setinputs((state) => ({
+                      setInputs((state) => ({
                         ...state,
                         user_password: e.target.value,
                       }))

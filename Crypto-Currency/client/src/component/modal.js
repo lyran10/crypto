@@ -9,7 +9,7 @@ import { LoginModal } from "./loginModal";
 export const Modale = () => {
   const [show, setShow] = useState(true);
   const navigate = useNavigate();
-  const { setmodal } = CryptoState();
+  const { setModal } = CryptoState();
 
   const handleClose = () => {
     setShow(false);
@@ -19,7 +19,7 @@ export const Modale = () => {
 
   const closeButton = () => {
     setShow(false);
-    setmodal(false);
+    setModal(false);
   };
 
   return (

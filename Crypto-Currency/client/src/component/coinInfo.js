@@ -13,7 +13,7 @@ import { chartDays } from "./config/data";
 Chart.register(CategoryScale);
 
 export const CoinInfo = ({ coin }) => {
-  const [history, sethistory] = useState();
+  const [history, setHistory] = useState();
   const [days, setdays] = useState(1);
   const { currency, handleToken } = CryptoState();
 
@@ -21,7 +21,7 @@ export const CoinInfo = ({ coin }) => {
     const { data } = await axios.get(HistoricalChart(coin.id, days, currency), {
       withCredentials: false,
     });
-    sethistory(data.prices);
+    setHistory(data.prices);
   };
 
   useEffect(() => {

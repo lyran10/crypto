@@ -12,63 +12,74 @@ import "./component/styles/navBar.css";
 const Crypto = createContext();
 
 const CryptoContext = ({ children }) => {
-  const [login, setlogin] = useState(false);
-  const [currency, setcurrency] = useState("ILS");
-  const [symbol, setsymbol] = useState("₪");
-  const [coins, setcoins] = useState([]);
-  const [loading, setloading] = useState(false);
-  const [username, setusername] = useState("");
-  const [userid, setuserid] = useState();
-  const [cleared, setcleared] = useState("");
-  const [userlist, setuserlist] = useState();
-  const [addcoin, setaddcoin] = useState();
-  const [deleteitem, setdeleteditem] = useState();
-  const [spinner, setspinner] = useState(false);
-  const [modal, setmodal] = useState(false);
-  const [translate, settranslate] = useState("translate");
-  const [miniSideBarTranslate, setminiSideBarTranslate] =
+  const [login, setLogin] = useState(false);
+  const [currency, setCurrency] = useState("ILS");
+  const [symbol, setSymbol] = useState("₪");
+  const [coins, setCoins] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [userName, setUserName] = useState("");
+  const [userId, setUserId] = useState();
+  const [cleared, setCleared] = useState("");
+  const [userList, setUserList] = useState();
+  const [addingCoin, setAddingCoin] = useState();
+  const [deleteItem, setDeletedItem] = useState();
+  const [spinner, setSpinner] = useState(false);
+  const [modal, setModal] = useState(false);
+  const [openSideNav, setOpenSideNav] = useState("translate");
+  const [openMiniNav, setOpenMiniNav] =
     useState("minitranslateback");
 
+  // change the symbol of currency when changed
   useEffect(() => {
-    if (currency === "USD") setsymbol("$");
-    else if (currency === "ILS") setsymbol("₪");
+    if (currency === "USD") setSymbol("$");
+    else if (currency === "ILS") setSymbol("₪");
   }, [currency, login]);
 
+// function to show spinner loader when spinner is true
   const SpinnerLoading = () => {
-    setspinner(true);
+    setSpinner(true);
 
     setTimeout(() => {
-      setspinner(false);
+      setSpinner(false);
     }, 1200);
   };
+
+  const userTokenExpired = (error) => {
+    setLogin(error);
+    localStorage.removeItem("id");
+    localStorage.removeItem("token");
+    setOpenSideNav("translate");
+    setOpenMiniNav("minitranslateback");
+    setTimeout(() => {
+      setModal(true);
+    }, 1000);
+  }
+
+  const renewIfExpired = () => {
+    renewToken()
+    .then((data) => {
+      setLogin(data.data.status);
+    })
+    .catch((err) => {
+      if (err.response.data.error === "jwt expired") {
+        userTokenExpired(err.response.data.status)
+      }
+    });
+  }
 
   const handleToken = () => {
     tokenFromDataBase(JSON.parse(localStorage.getItem("id")))
       .then((data) => {
-        setuserid(data.data.user[0].id);
-        setusername(data.data.user[0].user_name);
+        setUserId(data.data.user[0].id);
+        setUserName(data.data.user[0].user_name);
         getdata();
         localStorage.setItem("token",data.data.user[0]?.session_id)
         checkTokenExpired(data.data.user[0]?.session_id)
           .then((data) => {
-            setlogin(data.data.status);
-            if (data.data.error) {
-              renewToken()
-                .then((data) => {
-                  setlogin(data.data.status);
-                })
-                .catch((err) => {
-                  if (err.response.data.error === "jwt expired") {
-                    setlogin(err.response.data.status);
-                    localStorage.removeItem("id");
-                    localStorage.removeItem("token");
-                    settranslate("translate");
-                    setminiSideBarTranslate("minitranslateback");
-                    setTimeout(() => {
-                      setmodal(true);
-                    }, 1000);
-                  }
-                });
+            if(data.data.status){
+              setLogin(data.data.status);
+            }else if (data.data.error) {
+                renewIfExpired()
             }
           })
           .catch((err) => console.log(err));
@@ -76,6 +87,7 @@ const CryptoContext = ({ children }) => {
       .catch((err) => console.log(err));
   };
 
+// function to get the user coins which are stored in the watch list from the database to display in the watch list
   const getdata = async () => {
     if (JSON.parse(localStorage.getItem("id"))) {
       const { data } = await axios.post(
@@ -87,17 +99,18 @@ const CryptoContext = ({ children }) => {
       let user = data.data.reduce((acc, pre) => {
         return [...acc, pre.coin];
       }, []);
-      setuserlist(user);
+      setUserList(user);
     }
   };
 
+// fetch the data of the coins from an API
   const fetchCoins = async () => {
-    setloading(true);
+    setLoading(true);
     const { data } = await axios.get(CoinList(currency), {
       withCredentials: false,
     });
-    setcoins(data);
-    setloading(false);
+    setCoins(data);
+    setLoading(false);
   };
 
   return (
@@ -105,32 +118,34 @@ const CryptoContext = ({ children }) => {
       value={{
         currency,
         symbol,
-        setcurrency,
+        setCurrency,
         coins,
         loading,
         fetchCoins,
         login,
-        setlogin,
-        username,
-        userid,
-        setuserid,
-        setusername,
+        setLogin,
+        userName,
+        userId,
+        setUserId,
+        setUserName,
         cleared,
         getdata,
-        userlist,
-        addcoin,
-        setaddcoin,
-        deleteitem,
-        setdeleteditem,
+        userList,
+        addingCoin,
+        setAddingCoin,
+        deleteItem,
+        setDeletedItem,
         handleToken,
         spinner,
         SpinnerLoading,
         modal,
-        setmodal,
-        translate,
-        settranslate,
-        miniSideBarTranslate,
-        setminiSideBarTranslate,
+        setModal,
+        openSideNav,
+        setOpenSideNav,
+        openMiniNav,
+        setOpenMiniNav,
+        renewIfExpired,
+        userTokenExpired
       }}
     >
       {children}

@@ -2,10 +2,10 @@ import { CryptoState } from "../cryptoContext";
 
 export const LogoutButton = (props) => {
   const {Logout} = props
-const {settranslate} = CryptoState()
+const {setOpenSideNav} = CryptoState()
 
 const handleLogout = () => {
-  settranslate("translate")
+  setOpenSideNav("translate")
   Logout()
 
 }

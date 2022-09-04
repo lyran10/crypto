@@ -7,7 +7,7 @@ import { CryptoState } from "../cryptoContext";
 export const MiniMainBar = (props) => {
   const miniNavBar = useRef()
   const {
-    setminiSideBarTranslate} = CryptoState()
+    setOpenMiniNav} = CryptoState()
   const {selectForm, minitranslate} = props
 
   const closeMiniNavBar = (ref,close,set,event) => {
@@ -19,7 +19,7 @@ export const MiniMainBar = (props) => {
   }
 
   useEffect(() => {
-    closeMiniNavBar(miniNavBar,"minitranslateback",setminiSideBarTranslate,"mousedown")
+    closeMiniNavBar(miniNavBar,"minitranslateback",setOpenMiniNav,"mousedown")
   },[minitranslate])
 
 

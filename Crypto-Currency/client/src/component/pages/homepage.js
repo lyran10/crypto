@@ -6,7 +6,7 @@ import "../styles/navBar.css";
 
 export const Home = () => {
   const [show, setshow] = useState(false);
-  const { getdata, addcoin, handleToken, SpinnerLoading, login } =
+  const { getdata, addingCoin, handleToken, SpinnerLoading, login } =
     CryptoState();
 
   useEffect(
@@ -17,7 +17,7 @@ export const Home = () => {
       }
       getdata();
     },
-    [addcoin, JSON.parse(localStorage.getItem("id"))],
+    [addingCoin, JSON.parse(localStorage.getItem("id"))],
     login
   );
 

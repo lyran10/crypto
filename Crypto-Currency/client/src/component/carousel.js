@@ -10,18 +10,18 @@ export const numberWithCommas = (x) => {
 };
 
 export const Carousels = () => {
-  const [trending, settrending] = useState([]);
+  const [trending, setTrending] = useState([]);
   const { currency, symbol } = CryptoState();
 
   const fetchTrending = async () => {
     const { data } = await axios.get(TrendingCoins(currency), {
       withCredentials: false,
     });
-    settrending(data);
+    setTrending(data);
   };
 
   useEffect(() => {
-    settrending([]);
+    setTrending([]);
     setTimeout(() => {
       fetchTrending();
     }, 50);

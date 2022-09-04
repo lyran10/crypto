@@ -14,19 +14,19 @@ export const SideBar = () => {
   const sideMenuRef = useRef()
   const [logout,setlogout] = useState(false)
   const {
-    username,
+    userName,
     cleared,
     login,
-    setlogin,
-    userid,
-    translate,
-    setusername,
-    settranslate,
+    setLogin,
+    userId,
+    openSideNav,
+    setUserName,
+    setOpenSideNav,
     SpinnerLoading,
     currency,
-    setcurrency,
-    miniSideBarTranslate,
-    setminiSideBarTranslate,
+    setCurrency,
+    openMiniNav,
+    setOpenMiniNav,
   } = CryptoState();
   const navigate = useNavigate();
 
@@ -40,9 +40,9 @@ export const SideBar = () => {
 
   useEffect(() => {
     if(login === true){
-      closeSideMenuBar(sideMenuRef,"translate",settranslate,"click")
+      closeSideMenuBar(sideMenuRef,"translate",openSideNav,"click")
     }
-  }, [translate, login, currency, miniSideBarTranslate]);
+  }, [openSideNav, login, currency, openMiniNav]);
 
   const handleLogout = () => {
     axios.get("/logout").then((data) => {
@@ -50,7 +50,7 @@ export const SideBar = () => {
       .then((data) => console.log(data))
       .catch((err) => console.log(err));
       setTimeout(() => {
-        setlogin(false);
+        setLogin(false);
       }, 500);
       localStorage.removeItem("id");
       localStorage.removeItem("token");
@@ -60,8 +60,8 @@ export const SideBar = () => {
         setTimeout(() => { setlogout(false)},5000)
         SpinnerLoading();
         navigate("/");
-        setusername("");
-        setminiSideBarTranslate("minitranslateback");
+        setUserName("");
+        setOpenMiniNav("minitranslateback");
       } else {
         SpinnerLoading();
         navigate("/");
@@ -71,7 +71,8 @@ export const SideBar = () => {
 
   const handleChange = (e) => {
     SpinnerLoading();
-    setcurrency(e.target.value);
+    setCurrency(e.target.value);
+    setOpenMiniNav("minitranslateback");
   };
 
 	const formSelect = () => {
@@ -138,7 +139,7 @@ export const SideBar = () => {
       ) : null}
       {logout?<Toastify/>:null}
       {!login ? (
-      <MiniMainBar selectForm ={formSelect()} minitranslate={miniSideBarTranslate}/>
+      <MiniMainBar selectForm ={formSelect()} minitranslate={openMiniNav}/>
       ) : null}
     </>
   );

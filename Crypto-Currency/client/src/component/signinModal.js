@@ -12,12 +12,12 @@ import { Toastify,errorToasts,singedInToasts } from "./toastify.js";
 export const SignInModal = (props) => {
   const { dNone } = props;
   const { SpinnerLoading, login } = CryptoState();
-  const [inputs, setinputs] = useState({});
+  const [inputs, setInputs] = useState({});
   const [show, setshow] = useState(false);
   const navigate = useNavigate();
   const [Show, setShow] = useState(false);
   const [fullscreen, setFullscreen] = useState(true);
-  const [issigned,setissigned] = useState(false)
+  const [isSigned,setIsSigned] = useState(false)
 
   function handleShow(breakpoint) {
     setFullscreen(breakpoint);
@@ -37,7 +37,7 @@ export const SignInModal = (props) => {
         } else {
           setShow(false);
           navigate("/");
-          setissigned(true)
+          setIsSigned(true)
           setTimeout(() => {setissigned(false)},8000)
           setTimeout(() => {return singedInToasts("Signed In")},100) 
         }
@@ -107,7 +107,7 @@ export const SignInModal = (props) => {
                         className="input p-1"
                         name="user_name"
                         onChange={(e) =>
-                          setinputs((state) => ({
+                          setInputs((state) => ({
                             ...state,
                             user_name: e.target.value,
                           }))
@@ -124,7 +124,7 @@ export const SignInModal = (props) => {
                         style={{ width: "100%" }}
                         className="input p-1"
                         onChange={(e) =>
-                          setinputs((state) => ({
+                          setInputs((state) => ({
                             ...state,
                             user_email_id: e.target.value,
                           }))
@@ -143,7 +143,7 @@ export const SignInModal = (props) => {
                         style={{ width: "100%" }}
                         className="input p-1"
                         onChange={(e) =>
-                          setinputs((state) => ({
+                          setInputs((state) => ({
                             ...state,
                             user_password: e.target.value,
                           }))
@@ -163,7 +163,7 @@ export const SignInModal = (props) => {
                         style={{ width: "100%" }}
                         className="input p-1"
                         onChange={(e) =>
-                          setinputs((state) => ({
+                          setInputs((state) => ({
                             ...state,
                             user_confirm_password: e.target.value,
                           }))
@@ -184,9 +184,9 @@ export const SignInModal = (props) => {
             ) : null}
           </Container>
         </Modal.Body>
-        {!issigned?<Toastify />:null}
+        {!isSigned?<Toastify />:null}
       </Modal>
-      {issigned?<Toastify />:null}
+      {isSigned?<Toastify />:null}
     </>
   );
 };
