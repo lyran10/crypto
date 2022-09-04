@@ -72,21 +72,6 @@ export const Nav_Bar = () => {
     setOpenMiniNav("minitranslateback")
   };
 
- // select form of the currency
-  const formSelect = (handleChange) => {
-		return(
-			<Form.Select
-			value={currency}
-			onChange={(e) => handleChange(e)}
-			className="mini text-light bg-dark"
-			aria-label="Default select example"
-		>
-			<option value="USD">USD</option>
-			<option value="ILS">ILS</option>
-		</Form.Select>
-		)
-	}
-
   return (
     <nav>
       <Navbar
@@ -109,7 +94,15 @@ export const Nav_Bar = () => {
             Crypto Currency
           </Link>
           <Nav className="d-flex gap-4 justify-content-center">
-           {formSelect()}
+          <Form.Select
+            value={currency}
+            onChange={(e) => handleChange(e)}
+            className="mini text-light bg-dark"
+            aria-label="Default select example"
+          >
+            <option value="USD">USD</option>
+            <option value="ILS">ILS</option>
+          </Form.Select>
               {/* button when login for watch list */}
             {!login ? null :  (
               <GiHamburgerMenu
@@ -144,7 +137,7 @@ export const Nav_Bar = () => {
           </Nav>
         </Container>
       </Navbar>
-      <SideBar formSelect = {formSelect()} />
+      <SideBar />
     </nav>
   );
 };

@@ -10,8 +10,7 @@ import {LogoutButton} from "./logoutButton"
 import {MiniMainBar} from "./miniNavBar"
 import {deleteFromDataBase} from "./config/tokenapi.js"
 
-export const SideBar = (props) => {
-  const {formSelect} = props
+export const SideBar = () => {
   const sideMenuRef = useRef()// useRef to targate the side nav
   const [logout,setlogout] = useState(false) // state to set logout
   // All states from context api
@@ -79,6 +78,21 @@ export const SideBar = (props) => {
     setCurrency(e.target.value);
     setOpenMiniNav("minitranslateback");
   };
+
+   // select form of the currency
+   const formSelect = () => {
+		return(
+      <Form.Select
+      value={currency}
+      onChange={(e) => handleChange(e)}
+      className="mini text-light bg-dark"
+      aria-label="Default select example"
+    >
+      <option value="USD">USD</option>
+      <option value="ILS">ILS</option>
+    </Form.Select>
+		)
+	}
 
 // show the side nav only when logged in
   return (
