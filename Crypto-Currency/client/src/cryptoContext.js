@@ -99,7 +99,7 @@ const CryptoContext = ({ children }) => {
         { withCredentials: true }
       );
 
-      let user = data.data.reduce((acc, pre) => {
+      let user = data.data.reduce((acc, pre) => {// destructure only the coin names inside an array
         return [...acc, pre.coin];
       }, []);
       setUserList(user);
@@ -116,6 +116,7 @@ const CryptoContext = ({ children }) => {
     setLoading(false);
   };
 
+// all the states and functions that have to be used in other components
   return (
     <Crypto.Provider
       value={{
@@ -158,6 +159,7 @@ const CryptoContext = ({ children }) => {
 
 export default CryptoContext;
 
+// exporting the context API
 export const CryptoState = () => {
   return useContext(Crypto);
 };

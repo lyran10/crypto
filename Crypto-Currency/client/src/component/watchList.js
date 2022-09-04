@@ -5,6 +5,7 @@ import axios from "axios";
 import { checkTokenExpired } from "./config/tokenapi";
 
 export const WatchList = () => {
+  // All the states from the context API
   const {
     userList,
     addingCoin,
@@ -19,10 +20,12 @@ export const WatchList = () => {
     renewIfExpired
   } = CryptoState();
 
+  // fetch coins from an api and also get the user coin list if logged in
   useEffect(() => {
     fetchCoins();
     getdata();
   }, [addingCoin, deleteItem, currency]);
+
 
   const deleteCoinFromDataBase = async (userId) => {
     try {

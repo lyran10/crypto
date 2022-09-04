@@ -62,8 +62,8 @@ export const CoinPage = () => {
       .then((data) => {
         console.log(data)
         if (data.data.error) {
-          renewIfExpired()
-          addCoinInDataBase(e.target.id)
+          renewIfExpired(addCoinInDataBase(e.target.id))
+          
         }else{
           addCoinInDataBase(e.target.id)
         }
