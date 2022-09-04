@@ -5,10 +5,13 @@ import { useEffect, useState } from "react";
 import "../styles/navBar.css";
 
 export const Home = () => {
-  const [show, setshow] = useState(false);
+  const [show, setshow] = useState(false); // state to show data after all the data is fetched
+
+  // states fro contect api
   const { getdata, addingCoin, handleToken, SpinnerLoading, login } =
     CryptoState();
 
+  // when enter page show spinner loader then handle the token if there is an id and also get the users watch list from the database
   useEffect(
     () => {
       SpinnerLoading();
@@ -21,6 +24,7 @@ export const Home = () => {
     login
   );
 
+// show the banner and carousel in 500 mili seconds
   setTimeout(() => {
     setshow(true);
   }, 500);

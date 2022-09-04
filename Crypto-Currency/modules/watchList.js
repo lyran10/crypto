@@ -1,7 +1,7 @@
 let db = require("../connections/connections.js");
 
-const _addToWatchList = (obj) => {
-  return db("watch_list").insert(obj).returning("*");
+const _addToWatchList = (id,coin) => {
+  return db("watch_list").insert({user_id : id,coin : coin}).returning("*");
 };
 
 const _checkInList = (id) => {

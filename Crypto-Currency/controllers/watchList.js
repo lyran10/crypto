@@ -6,7 +6,8 @@ const {
 } = require("../modules/watchList.js");
 
 const addToWatchList = (req, res) => {
-  _addToWatchList(req.body)
+  const {id,coin} = req.body
+  _addToWatchList(id,coin)
     .then((data) => {
       res.json({ list: data });
     })
